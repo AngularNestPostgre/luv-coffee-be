@@ -1,0 +1,18 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "testRunner": "jest-jasmine2",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@lib/fe-shared/(.*)": "<rootDir>/../libs/fe-shared/src/$1",
+    "@lib/fe-shared": "<rootDir>/../libs/fe-shared/src"
+  }
+}

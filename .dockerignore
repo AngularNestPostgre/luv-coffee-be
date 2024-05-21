@@ -1,0 +1,28 @@
+# Versioning and metadata
+.git
+.gitignore
+.dockerignore
+.vscode
+.DS_Store
+
+# Build dependencies
+dist
+node_modules
+coverage
+
+# Environment (contains sensitive data)
+.env.local
+.env.development.local
+.env.dev
+.env.development
+.env.test.local
+.env.production.local
+.env.prod
+.env.production
+
+# Files not required for production
+.editorconfig
+Dockerfile
+README.md
+tslint.json
+nodemon.json

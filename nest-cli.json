@@ -1,0 +1,22 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "plugins": [
+      "@nestjs/swagger/plugin"
+    ],
+    "webpack": true
+  },
+  "projects": {
+    "fe-shared": {
+      "type": "library",
+      "root": "libs/fe-shared",
+      "entryFile": "index",
+      "sourceRoot": "libs/fe-shared/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/fe-shared/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "name": "@ng-nest-postgre/luv-coffee-be",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "18.x.x"
+  },
+  "workspaces": {
+    "packages": [],
+    "nohoist": [
+      "@typescript-eslint/eslint-plugin",
+      "@typescript-eslint/eslint-plugin/**",
+      "typeorm"
+    ]
+  },
+  "scripts": {
+    "start": "node ./dist/src/main",
+    "start:dev": "yarn build && cross-env NODE_ENV=local-server-dev-db node ./dist/src/main",
+    "serve": "nest start --debug 0.0.0.0:9229 --watch --tsc",
+    "serve:local": "yarn copy:yarn.lock && docker compose --env-file=.env/.env.local up",
+    "serve:local:docker:update": "yarn copy:yarn.lock && docker compose --env-file=.env/.env.local up --build -V",
+    "serve:dev": "cross-env NODE_ENV=local-server-dev-db nest start --debug 0.0.0.0:9229 --watch --tsc",
+    "build": "nest build --tsc",
+    "build:luv-coffee-be": "nest build luv-coffee-be --tsc",
+    "build:fe-shared": "nest build fe-shared --tsc",
+    "build:fe-shared:watch": "nest build fe-shared --watch --tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:file": "jest src/coffees/coffees.service.spec.ts",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e:docker": "yarn copy:yarn.lock && docker compose -f docker-compose.e2e.yml --env-file=.env/.env.e2e up --abort-on-container-exit --exit-code-from app_e2e",
+    "test:e2e:docker:update": "yarn copy:yarn.lock && docker compose -f docker-compose.e2e.yml up --build -V --abort-on-container-exit --exit-code-from app_e2e",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "typeorm:create-migration": "yarn typeorm migration:create src/db/migrations/CoffeeRefactor",
+    "typeorm:generate-migration": "yarn build && yarn typeorm migration:generate src/db/migrations/SchemaSync -d dist/typeorm.config",
+    "typeorm:migrate:local": "yarn build && yarn typeorm migration:run -d dist/typeorm.config",
+    "typeorm:migration:revert:local": "yarn typeorm migration:revert -d dist/typeorm.config",
+    "typeorm:migration:status:local": "yarn typeorm migration:show -d dist/typeorm.config",
+    "db:proxy": "./cloud-sql-proxy --port 3307 luv-coffee-414618:europe-west1:luv-coffee-dev-1",
+    "db:migrate:dev": "cross-env NODE_ENV=dev yarn typeorm:cli migration:run",
+    "db:migration:revert:dev": "cross-env NODE_ENV=dev yarn typeorm:cli migration:revert",
+    "db:migration:status:dev": "cross-env NODE_ENV=dev yarn typeorm:cli migration:show",
+    "deploy:dev": "gcloud app deploy app.dev.yaml --project luv-coffee-414618",
+    "gcp-build": "yarn build",
+    "security:sync-dot-env": "rm -r .env && mkdir .env && gsutil rsync -u -r -d -C gs://luv-coffee-dot-env .env/",
+    "copy:yarn.lock": "cp ../../../yarn.lock ./",
+    "delete:yarn.lock": "rm -f yarn.lock",
+    "precommit": "yarn delete:yarn.lock && yarn lint",
+    "prepush": "yarn test"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "@nestjs/common": "^10.3.5",
+    "@nestjs/config": "^3.2.0",
+    "@nestjs/core": "^10.3.5",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/mapped-types": "^2.0.5",
+    "@nestjs/passport": "^10.0.3",
+    "@nestjs/platform-express": "^10.3.5",
+    "@nestjs/schedule": "^4.0.1",
+    "@nestjs/swagger": "^7.3.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "cookie-parser": "^1.4.6",
+    "luxon": "^3.4.4",
+    "nodemailer": "^6.9.13",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "rxjs": "^7.8.1",
+    "swagger-ui-express": "^5.0.0",
+    "typeorm": "^0.3.20",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.3.2",
+    "@nestjs/schematics": "^10.1.1",
+    "@nestjs/testing": "^10.3.5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cron": "^2.0.1",
+    "@types/express": "^4.17.21",
+    "@types/hapi__joi": "^17.1.14",
+    "@types/jest": "^29.5.12",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^20.11.30",
+    "@types/nodemailer": "^6.4.14",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/passport-local": "^1.0.38",
+    "@types/supertest": "^6.0.2",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "jest": "^29.7.0",
+    "jest-mock": "^29.7.0",
+    "prettier": "^3.2.5",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "./",
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "moduleNameMapper": {
+      "@auth/(.*)": "<rootDir>/src/auth/$1",
+      "@common/(.*)": "<rootDir>/src/common/$1",
+      "@email/(.*)": "<rootDir>/src/email/$1",
+      "@modules/(.*)": "<rootDir>/src/modules/$1",
+      "@users/(.*)": "<rootDir>/src/users/$1",
+      "^@lib/fe-shared(|/.*)$": "<rootDir>/libs/fe-shared/src/$1"
+    },
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/libs/"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

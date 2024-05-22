@@ -1,14 +1,15 @@
 # Documentation
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-# Global Setup
+# Setup
 - Instlall nvm (https://github.com/nvm-sh/nvm).
+- Install Docker (https://docs.docker.com/desktop/).
 - Install Installing Cloud SDK (https://cloud.google.com/sdk/docs/install).
+- If you are not on Windows x64:
+  Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
-Run `nvm install xx.xx.x`
-Run `nvm use xx.xx.x`
-Run `npm i -g yarn`
-Run `npm i -g @angular/cli`
+Run `nvm install 1.1.x`
+Run `nvm use 18.xx.x`
 Run `npm i -g @nestjs/cli`
 Run `npm install -g npm-check-updates`
 Run `npx husky init`
@@ -16,50 +17,35 @@ Run `npx husky init`
 # Dependencies CLI
 - `gcloud` (Google Cloud SDK)
 - `node` version xx.xx.x
-- `yarn`, version xx.xx.x
 - `docker`, used only for local development
 - `@nestjs/cli`.
-
-# Setup
-- Install project global dependecies according to `README.md` in the root.
-- Install Docker (https://docs.docker.com/desktop/).
-- If you are not on Windows x64:
-  Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
 # Update npm packages
 - Run `ncu`
 - Run `ncu -u`
 - Run `gcloud components update`
 
-
-
 # Development
 ## Development targeted to local DB
-1. After each `yarn install`:
-  - run `yarn serve:local:docker:update`,
+1. After each `npm install`:
+  - run `npm run serve:local:docker:update`,
   - and don't forget to remove old docker volume.
-2. Or run `yarn serve:local` if no new npm modules were installed.
+2. Or run `npm run serve:local` if no new npm modules were installed.
 
 ## Development targeted to dev DB
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
-- Run `yarn db:proxy` in the first terminal.
-- Run `yarn serve:dev` in the second terminal.
+- Run `npm run db:proxy` in the first terminal.
+- Run `mpn run serve:dev` in the second terminal.
 
 ## Build fe-shared library for frontend development
-Run `yarn build:fe-shared` in the first terminal.
+Run `npm run build:fe-shared` in the first terminal.
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
 
-
-# Docker & Yarn Workspace
-Yarn Workspace has only one "yarn.lock" file on the root.
-To run Docker for any workspace project the "yarn.lock" file should be copied to project folder.
-
-
 # TypeOrm
 ## DB Migrations
-Run `yarn serve:local` (to run DB)
+Run `npm run serve:local` (to run DB)
 
 1a. Create migration (create SQL changes manually)
   - Set migration path in
@@ -98,9 +84,9 @@ https://github.com/w3tecch/typeorm-seeding
 
 
 # Unit tests
-Run `yarn test` to run all unit tests.
-Run `yarn test:watch -- coffees.service` to watch only one file.
-Run `yarn test:cov` to run all unit tests with test coverage.
+Run `npm run test` to run all unit tests.
+Run `npm run test:watch -- coffees.service` to watch only one file.
+Run `npm run test:cov` to run all unit tests with test coverage.
 
 
 <!-- TODO: e2e tests have to be reajusted -->

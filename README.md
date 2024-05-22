@@ -8,11 +8,11 @@
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
-Run `nvm install 1.1.x`
-Run `nvm use 18.xx.x`
-Run `npm i -g @nestjs/cli`
-Run `npm install -g npm-check-updates`
-Run `npx husky init`
+- Run `nvm install 1.1.x`
+- Run `nvm use 18.xx.x`
+- Run `npm i -g @nestjs/cli`
+- Run `npm install -g npm-check-updates`
+- Run `npx husky init`
 
 # Dependencies CLI
 - `gcloud` (Google Cloud SDK)

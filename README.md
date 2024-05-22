@@ -11,7 +11,6 @@ Run `npm i -g yarn`
 Run `npm i -g @angular/cli`
 Run `npm i -g @nestjs/cli`
 Run `npm install -g npm-check-updates`
-?? Run `yarn add -D commitizen` (`npm i -g commitizen`)
 
 # Dependencies CLI
 - `gcloud` (Google Cloud SDK)

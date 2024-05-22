@@ -16,10 +16,10 @@
   },
   "scripts": {
     "start": "node ./dist/src/main",
-    "start:dev": "yarn build && cross-env NODE_ENV=local-server-dev-db node ./dist/src/main",
+    "start:dev": "npm run build && cross-env NODE_ENV=local-server-dev-db node ./dist/src/main",
     "serve": "nest start --debug 0.0.0.0:9229 --watch --tsc",
-    "serve:local": "yarn copy:yarn.lock && docker compose --env-file=.env/.env.local up",
-    "serve:local:docker:update": "yarn copy:yarn.lock && docker compose --env-file=.env/.env.local up --build -V",
+    "serve:local": "docker compose --env-file=.env/.env.local up",
+    "serve:local:docker:update": "docker compose --env-file=.env/.env.local up --build -V",
     "serve:dev": "cross-env NODE_ENV=local-server-dev-db nest start --debug 0.0.0.0:9229 --watch --tsc",
     "build": "nest build --tsc",
     "build:luv-coffee-be": "nest build luv-coffee-be --tsc",
@@ -146,10 +146,5 @@
       "<rootDir>/src/",
       "<rootDir>/libs/"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   }
 }

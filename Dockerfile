@@ -1,9 +1,9 @@
 FROM node:18.19.0-alpine AS development
 WORKDIR /usr/src/app
-COPY package*.json yarn.lock ./
-RUN yarn install
+COPY package*.json ./
+RUN npm install
 COPY . .
-RUN yarn build
+RUN npm run build
 
 # FROM node:16.13-alpine AS production
 # ARG NODE_ENV=production

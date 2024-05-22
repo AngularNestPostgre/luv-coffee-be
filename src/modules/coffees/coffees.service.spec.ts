@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { NotFoundException } from '@nestjs/common';
 
 import { CoffeesService } from './coffees.service';
@@ -20,7 +20,7 @@ describe('CoffeesService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CoffeesService,
-        { provide: Connection, useValue: {} },
+        { provide: DataSource, useValue: {} },
         {
           provide: getRepositoryToken(Coffee),
           useValue: createMockRepository(),

@@ -52,7 +52,8 @@
     "copy:yarn.lock": "cp ../../../yarn.lock ./",
     "delete:yarn.lock": "rm -f yarn.lock",
     "precommit": "npm run lint",
-    "prepush": "npm run test"
+    "prepush": "npm run test",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -147,10 +148,5 @@
       "<rootDir>/src/",
       "<rootDir>/libs/"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo \"[Husky] pre-commit\""
-    }
   }
 }

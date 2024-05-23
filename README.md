@@ -1,5 +1,6 @@
 # Documentation
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- https://medium.com/@avinashanshu.iitb/create-a-multiple-nest-package-and-publish-it-privately-and-publically-8003dde4497e
 
 # Setup
 - Instlall nvm (https://github.com/nvm-sh/nvm).
@@ -8,19 +9,19 @@
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
-- Run `nvm install 1.1.x`
-- Run `nvm use 18.xx.x`
+- Run `nvm install 1.x.x`
+- Run `nvm use 18.x.x`
 - Run `npm i -g @nestjs/cli`
 - Run `npm install -g npm-check-updates`
 - Run `npx husky init`
 
-# Dependencies CLI
+## Dependencies CLI
 - `gcloud` (Google Cloud SDK)
-- `node` version xx.xx.x
+- `node` version 18.xx.x
 - `docker`, used only for local development
 - `@nestjs/cli`.
 
-# Update npm packages
+## Update npm packages
 - Run `ncu`
 - Run `ncu -u`
 - Run `gcloud components update`
@@ -37,8 +38,9 @@
 - Run `npm run db:proxy` in the first terminal.
 - Run `mpn run serve:dev` in the second terminal.
 
-## Build fe-shared library for frontend development
-Run `npm run build:fe-shared` in the first terminal.
+## Publish libraries/packages for frontend development
+1. Update package version.
+2. Run `npm run publish:packages`.
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.

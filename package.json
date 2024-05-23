@@ -1,18 +1,11 @@
 {
-  "name": "@ng-nest-postgre/luv-coffee-be",
+  "name": "@angularnestpostgre/luv-coffee-be",
   "version": "0.0.1",
+  "repository": "https://github.com/AngularNestPostgre/luv-coffee-be.git",
+  "author": "Andriy<veldymanov@gmail.com>",
   "license": "MIT",
-  "private": true,
   "engines": {
     "node": "18.x.x"
-  },
-  "workspaces": {
-    "packages": [],
-    "nohoist": [
-      "@typescript-eslint/eslint-plugin",
-      "@typescript-eslint/eslint-plugin/**",
-      "typeorm"
-    ]
   },
   "scripts": {
     "start": "node ./dist/src/main",
@@ -25,6 +18,7 @@
     "build:luv-coffee-be": "nest build luv-coffee-be --tsc",
     "build:fe-shared": "nest build fe-shared --tsc",
     "build:fe-shared:watch": "nest build fe-shared --watch --tsc",
+    "publish:packages": "npm run build:fe-shared && npm publish ./packages",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

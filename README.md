@@ -5,19 +5,19 @@
 # Setup
 - Instlall nvm (https://github.com/nvm-sh/nvm).
 - Install Docker (https://docs.docker.com/desktop/).
-- Install Installing Cloud SDK (https://cloud.google.com/sdk/docs/install).
+- Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
 - Run `nvm install 1.x.x`
-- Run `nvm use 18.x.x`
+- Run `nvm use xx.x.x` (according to Dockerfile)
 - Run `npm i -g @nestjs/cli`
 - Run `npm install -g npm-check-updates`
 - Run `npx husky init`
 
 ## Dependencies CLI
 - `gcloud` (Google Cloud SDK)
-- `node` version 18.xx.x
+- `node` version xx.xx.x (according to Dockerfile)
 - `docker`, used only for local development
 - `@nestjs/cli`.
 
@@ -38,8 +38,17 @@
 - Run `npm run db:proxy` in the first terminal.
 - Run `mpn run serve:dev` in the second terminal.
 
-## Publish libraries/packages for frontend development
-1. Update package version.
+## Libraries/Packages
+### Generate _authToken
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
+https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages
+https://github.com/settings/tokens
+1. Generate `_authToken` for be with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+2. Generate `_authToken` for fe with `read` permissions.
+3. Add `_authToken` to `.npmrc`.
+
+### Publish libraries/packages
+1. Update version in package.json.
 2. Run `npm run publish:packages`.
 
 ## Debugging

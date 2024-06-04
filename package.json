@@ -1,6 +1,6 @@
 {
   "name": "@angularnestpostgre/luv-coffee-be",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "repository": "https://github.com/AngularNestPostgre/luv-coffee-be.git",
   "author": "Andriy<veldymanov@gmail.com>",
   "license": "MIT",

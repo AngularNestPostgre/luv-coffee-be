@@ -30,7 +30,7 @@ const ENV: Env = process.env.NODE_ENV as Env;
         password: process.env.DB_PASSWORD,
         autoLoadEntities: true,
         /*
-          Ensures that typeorm entoties will be synced with the DB every time we run the app.
+          Ensures that typeorm entities will be synced with the DB every time we run the app.
           Automatically generate SQL table from all classes with the entity decorator and metadata they contain.
           For development only!
         **/

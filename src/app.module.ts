@@ -14,9 +14,9 @@ import { EventsModule } from './modules/events/events.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Env } from '@common/enums/env.enum';
+// import { Env } from '@common/enums/env.enum';
 
-const ENV: Env = process.env.NODE_ENV as Env;
+// const ENV: Env = process.env.NODE_ENV as Env;
 
 @Module({
   imports: [
@@ -38,7 +38,8 @@ const ENV: Env = process.env.NODE_ENV as Env;
       }),
     }),
     ConfigModule.forRoot({
-      envFilePath: !ENV ? '.env/.env.local' : `.env/.env.${ENV}`,
+      // envFilePath: !ENV ? '.env/.env.local' : `.env/.env.${ENV}`,
+      ignoreEnvFile: true,
       validationSchema: Joi.object({
         SERVER_PORT: Joi.number().default(8080),
         DB_NAME: Joi.required(),

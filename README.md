@@ -38,6 +38,12 @@
 - Run `npm run db:proxy` in the first terminal.
 - Run `mpn run serve:dev` in the second terminal.
 
+## Run build locally
+- Run `npm run compose:local:db` in the first terminal. Then:
+  1. Run `npm run start:local:build` in the second terminal. Or:
+  2.1 Run `npm build:local:image` and
+  2.2 Run `npm run start:local:image`.
+
 ## Libraries/Packages
 ### Generate _authToken
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry

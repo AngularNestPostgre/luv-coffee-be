@@ -1,26 +1,27 @@
 # Documentation
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- https://medium.com/@avinashanshu.iitb/create-a-multiple-nest-package-and-publish-it-privately-and-publically-8003dde4497e
 
 # Setup
 - Instlall nvm (https://github.com/nvm-sh/nvm).
 - Install Docker (https://docs.docker.com/desktop/).
-- Install Installing Cloud SDK (https://cloud.google.com/sdk/docs/install).
+- Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
-Run `nvm install 1.1.x`
-Run `nvm use 18.xx.x`
-Run `npm i -g @nestjs/cli`
-Run `npm install -g npm-check-updates`
-Run `npx husky init`
+- Run `nvm install 1.x.x`
+- Run `nvm use xx.x.x` (according to Dockerfile)
+- Run `npm i -g @nestjs/cli`
+- Run `npm install -g npm-check-updates`
+- Run `npx husky init`
 
-# Dependencies CLI
+## Dependencies CLI
 - `gcloud` (Google Cloud SDK)
-- `node` version xx.xx.x
+- `node` version xx.xx.x (according to Dockerfile)
 - `docker`, used only for local development
 - `@nestjs/cli`.
 
-# Update npm packages
+## Update npm packages
 - Run `ncu`
 - Run `ncu -u`
 - Run `gcloud components update`
@@ -37,8 +38,24 @@ Run `npx husky init`
 - Run `npm run db:proxy` in the first terminal.
 - Run `mpn run serve:dev` in the second terminal.
 
-## Build fe-shared library for frontend development
-Run `npm run build:fe-shared` in the first terminal.
+## Run build locally
+- Run `npm run compose:local:db` in the first terminal. Then:
+  1. Run `npm run start:local:build` in the second terminal. Or:
+  2.1 Run `npm build:local:image` and
+  2.2 Run `npm run start:local:image`.
+
+## Libraries/Packages
+### Generate _authToken
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
+https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages
+https://github.com/settings/tokens
+1. Generate `_authToken` for be with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+2. Generate `_authToken` for fe with `read` permissions.
+3. Add `_authToken` to `.npmrc`.
+
+### Publish libraries/packages
+1. Update version in package.json.
+2. Run `npm run publish:packages`.
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
@@ -49,26 +66,26 @@ Run `npm run serve:local` (to run DB)
 
 1a. Create migration (create SQL changes manually)
   - Set migration path in
-     `"typeorm:create-migration": "yarn typeorm migration:create src/db/migrations/CoffeeRefactor"`
+     `"typeorm:create-migration": "npx typeorm migration:create src/db/migrations/CoffeeRefactor"`
     by changing `CoffeeRefactor` to the right name.
-  - Run `yarn typeorm:create-migration`.
+  - Run `npm run typeorm:create-migration`.
   - In the created `1711698670588-CoffeeRefactor.ts` input SQL commands for `up()` and `down()` methods.
   - In `typeorm.config.ts` file in `migrations` array add migration class `CoffeeRefactor1711698670588` from created `1711698670588-CoffeeRefactor.ts` file.
-  - Run `yarn typeorm:migrate:local`. (Be sure that application must be built before `yarn typeorm migration:run -d dist/typeorm.config`)
+  - Run `npm run typeorm:migrate:local`. (Be sure that application must be built before `npx typeorm migration:run -d dist/typeorm.config`)
 
 1b. Generate migration (let typeorm generate SQL changes)
   - In `typeorm.config.ts` file in `entities` array add entities (entities: [Coffee, Flavor]):
       `import { Coffee } from './src/modules/coffees/entities/coffee.entity';`
       `import { Flavor } from './src/modules/coffees/entities/flavor.entity';`
     which are going to be changed.
-  - Run `yarn typeorm:generate-migration`. (Be sure that application must be built before `yarn typeorm migration:generate src/db/migrations/SchemaSync -d dist/typeorm. config`).
+  - Run `npm run typeorm:generate-migration`. (Be sure that application must be built before `npx typeorm migration:generate src/db/migrations/SchemaSync -d dist/typeorm. config`).
   - In `typeorm.config.ts` file in `migrations` array add migration class `SchemaSync1711700291982` from created `1711700291982-SchemaSync.ts` file.
-  - Run `yarn typeorm:migrate:local`. (Be sure that application must be built before `yarn typeorm migration:run -d dist/typeorm.config`)
+  - Run `npm run typeorm:migrate:local`. (Be sure that application must be built before `npx typeorm migration:run -d dist/typeorm.config`)
 
 2. Local migrations:
-  Run `yarn db:migrate:local`
-  Run `yarn db:migration:revert:local`
-  Run `yarn db:migration:status:local`
+  Run `npm run db:migrate:local`
+  Run `npm run db:migration:revert:local`
+  Run `npm run db:migration:status:local`
 
 3. dev environment migrations:
   (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)

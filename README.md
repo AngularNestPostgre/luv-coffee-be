@@ -57,6 +57,12 @@ https://github.com/settings/tokens
 1. Update version in package.json.
 2. Run `npm run publish:packages`.
 
+### Release
+1. Update versions in (versions must be the same):
+  - package.json
+  - packages/package.json
+  - .github/workflows/ci-cd.yaml (tag hardcoding)
+
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
 

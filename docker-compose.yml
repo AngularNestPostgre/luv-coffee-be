@@ -13,8 +13,8 @@ services:
       - ${SERVER_PORT}:${SERVER_PORT}
       - 9229:9229
     command: npm run serve
-    # env_file:
-    #   - .env
+    env_file:
+      - .env/.env.local
     networks:
       - webnet
     depends_on:
@@ -22,7 +22,7 @@ services:
 
   postgres:
     container_name: luv_coffee_be_postgres_dev
-    image: postgres:14.1
+    image: postgres:14
     restart: always
     networks:
       - webnet

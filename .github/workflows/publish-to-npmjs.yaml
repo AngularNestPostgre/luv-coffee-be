@@ -1,0 +1,23 @@
+---
+name: Publish Packages to npmjs
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-image:
+    name: Build Image
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Docker Build, Run Tests, and Publish Packages
+        uses: docker/build-push-action@v6
+        env:
+          NPM_FE_SHARED_TOKEN: ${{ secrets.NPM_FE_SHARED_TOKEN }}
+        with:
+          push: false
+          tags: ${{ github.run_id }}
+          target: test_and_publish
+
+

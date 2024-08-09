@@ -25,3 +25,12 @@ RUN npm ci --include=dev
 COPY . .
 RUN npm run lint
 RUN npm run test
+RUN npm run build
+
+FROM base AS test_and_publish
+COPY package*.json ./
+RUN npm ci --include=dev
+COPY . .
+RUN npm run lint
+RUN npm run test
+RUN npm run publish:packages

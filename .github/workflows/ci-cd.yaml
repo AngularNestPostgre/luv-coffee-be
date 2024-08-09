@@ -28,6 +28,6 @@ jobs:
         with:
           push: ${{ github.event_name != 'pull_request' }}
           tags: angularnestpostgre/luv-coffee-be:latest,angularnestpostgre/luv-coffee-be:0.0.13
-          target: ci
+          target: prod
           # cache-from: type=gha
           # cache-to: type=gha,mode=max

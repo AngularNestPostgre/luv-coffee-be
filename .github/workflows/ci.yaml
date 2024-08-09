@@ -37,6 +37,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: angularnestpostgre/luv-coffee-be:latest,angularnestpostgre/luv-coffee-be:0.0.15
+          tags: angularnestpostgre/luv-coffee-be:latest,angularnestpostgre/luv-coffee-be:0.0.16
           target: prod
 

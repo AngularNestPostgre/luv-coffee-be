@@ -10,14 +10,28 @@ jobs:
     name: Build Image
     runs-on: ubuntu-latest
     steps:
-
       - name: Docker Build, Run Tests, and Publish Packages
         uses: docker/build-push-action@v6
-        env:
-          NPM_FE_SHARED_TOKEN: ${{ secrets.NPM_FE_SHARED_TOKEN }}
         with:
           push: false
           tags: ${{ github.run_id }}
           target: test_and_publish
+          secrets: |
+            NPM_FE_SHARED_TOKEN: ${{ secrets.NPM_FE_SHARED_TOKEN }}
 
-
+  # build:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     id-token: write
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     # Setup .npmrc file to publish to npm
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '22.x'
+  #         registry-url: 'https://registry.npmjs.org'
+  #     - run: npm ci
+  #     - run: npm publish --provenance --access public
+  #       env:
+  #         NPM_FE_SHARED_TOKEN: ${{ secrets.NPM_FE_SHARED_TOKEN }}

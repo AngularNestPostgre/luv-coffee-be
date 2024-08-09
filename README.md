@@ -60,7 +60,7 @@ https://github.com/settings/tokens
 1. Update versions in (versions must be the same):
   - package.json
   - packages/package.json
-  - .github/workflows/ci-cd.yaml (tag hardcoding)
+  - .github/workflows/ci-cd.yaml (tags hardcoding for prod) ?
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.

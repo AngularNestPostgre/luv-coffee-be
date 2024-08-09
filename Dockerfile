@@ -16,5 +16,4 @@ COPY package*.json ./
 RUN npm install --omit=dev
 # COPY . .
 COPY --from=development /usr/src/app/dist ./dist
-
 CMD ["node", "dist/src/main"]

@@ -56,6 +56,7 @@ describe('UsersService', () => {
         userRepository.findOne.mockReturnValue(expectedCofee);
         const coffee = await service.findById(userId);
         expect(coffee).toEqual(expectedCofee);
+        expect(true).toBe(false);
       });
     });
 

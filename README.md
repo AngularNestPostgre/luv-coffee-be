@@ -29,20 +29,19 @@
 # Development
 ## Development targeted to local DB
 1. After each `npm install`:
-  - run `npm run serve:local:docker:update`,
+  - run `npm run compose:local:update`,
   - and don't forget to remove old docker volume.
-2. Or run `npm run serve:local` if no new npm modules were installed.
+2. Or run `npm run compose:local` if no new npm modules were installed.
 
-## Development targeted to dev DB
+## Development targeted to dev DB (needs testing!!!! move to docker!!!!)
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
 - Run `npm run db:proxy` in the first terminal.
-- Run `mpn run serve:dev` in the second terminal.
+- Run `npm run serve:dev` in the second terminal.
 
 ## Run build locally
 - Run `npm run compose:local:db` in the first terminal. Then:
-  1. Run `npm run start:local:build` in the second terminal. Or:
-  2.1 Run `npm build:local:image` and
-  2.2 Run `npm run start:local:image`.
+  1 Run `npm run docker:build:local:image` and
+  2 Run `npm run docker:run:local:image`.
 
 ## Libraries/Packages
 ### Generate _authToken
@@ -61,7 +60,7 @@ https://github.com/settings/tokens
 1. Update versions in (versions must be the same):
   - package.json
   - packages/package.json
-  - .github/workflows/ci-cd.yaml (tag hardcoding)
+  - .github/workflows/ci-cd.yaml (tags hardcoding for prod) ?
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.

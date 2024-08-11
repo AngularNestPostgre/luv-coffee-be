@@ -28,6 +28,7 @@ RUN npm run test
 RUN npm run build
 
 FROM base AS test_and_publish
+LABEL org.opencontainers.image.source=https://github.com/NgNestPostgres/luv-coffee-be
 COPY package*.json ./
 RUN npm ci --include=dev
 COPY . .

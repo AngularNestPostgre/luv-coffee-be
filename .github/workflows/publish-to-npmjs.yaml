@@ -21,11 +21,17 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
+      packages: write
+      attestations: write
       id-token: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v4
         with:

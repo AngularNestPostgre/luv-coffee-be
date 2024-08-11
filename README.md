@@ -48,11 +48,13 @@
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
 https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages
 https://github.com/settings/tokens
-1. Generate `_authToken` for be with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
-2. Generate `_authToken` for fe with `read` permissions.
-3. In GitHub Actions add token as a secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
-4. Add `env NPM_FE_SHARED_TOKEN` to GitHub Actions workflow
-3. Add `//registry.npmjs.org/:_authToken=${NPM_FE_SHARED_TOKEN}` to `.npmrc`.
+
+1. Personal Access Token (classic).
+  1.1. Generate `_authToken` for be with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+  1.2. Generate `_authToken` for fe with `read` permissions.
+  1.3. In GitHub Actions add token as a secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+  1.4. Add `env NPM_FE_SHARED_TOKEN` to GitHub Actions workflow
+  1.5. Add `//registry.npmjs.org/:_authToken=${NPM_FE_SHARED_TOKEN}` to `.npmrc`.
 
 ### Publish libraries/packages
 1. Update version in package.json.

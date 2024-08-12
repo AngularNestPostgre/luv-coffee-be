@@ -1,5 +1,5 @@
 ---
-name: luv-coffee-be ci/cd
+name: luv-coffee-be ci
 
 on:
   push:
@@ -10,8 +10,12 @@ on:
 jobs:
   build-image:
     name: Build Image
+
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -19,23 +23,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Run Trivy for all CVEs (non-blocking)
-      #   uses: aquasecurity/trivy-action@master
-      #   with:
-      #     image-ref: ${{ github.run_id }}
-      #     exit-code: 0
-      #     format: table
-
       - name: Docker Build and Run CI tests
         uses: docker/build-push-action@v6
         with:
           push: false
           tags: ${{ github.run_id }}
-          target: prod
+          target: ci
+
+      - name: Run Trivy for all CVEs (non-blocking)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ github.run_id }}
+          exit-code: 0
+          format: table
 
       - name: Docker Build and Push to Docker Hub
         uses: docker/build-push-action@v6
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          tags: angularnestpostgre/luv-coffee-be:latest,angularnestpostgre/luv-coffee-be:0.0.14
+          tags: angularnestpostgre/luv-coffee-be:latest,angularnestpostgre/luv-coffee-be:0.0.16
           target: prod
+

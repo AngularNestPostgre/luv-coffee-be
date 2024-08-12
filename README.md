@@ -46,7 +46,6 @@
 ## Libraries/Packages
 ### Generate _authToken
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
-https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages
 https://github.com/settings/tokens
 
 1. Personal Access Token (classic).
@@ -58,13 +57,20 @@ https://github.com/settings/tokens
 
 ### Publish libraries/packages
 1. Update version in package.json.
-2. Run `npm run publish:packages`.
+2. Publish from local machine:
+  2.1. Authenticate with personal access token (classic):
+    - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
+        Username: ngnestpostgres
+        Password: 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
+  2.2 Run `npm run publish:packages`.
+3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
+  3.1
 
 ### Release
 1. Update versions in (versions must be the same):
   - package.json
   - packages/package.json
-  - .github/workflows/ci-cd.yaml (tags hardcoding for prod) ?
+  - .github/workflows/ci.yaml (tags hardcoding for prod) ?
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.

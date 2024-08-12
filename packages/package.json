@@ -1,6 +1,10 @@
 {
-  "name": "@angularnestpostgre/packages",
+  "name": "@ngnestpostgres/packages",
   "author": "Andriy<veldymanov@gmail.com>",
   "version": "0.0.16",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NgNestPostgres/luv-coffee-be.git"
+  }
 }

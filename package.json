@@ -1,6 +1,6 @@
 {
   "name": "@ngnestpostgres/luv-coffee-be",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "repository": "https://github.com/NgNestPostgres/luv-coffee-be.git",
   "author": "Andriy<veldymanov@gmail.com>",
   "license": "MIT",

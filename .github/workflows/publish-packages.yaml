@@ -1,0 +1,58 @@
+---
+name: Publish Packages to npmjs
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-image:
+    name: Publish Packages with Docker
+
+    permissions:
+      contents: read
+      packages: write
+      # attestations: write
+      # id-token: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Docker Build, Run Tests, and Publish Packages
+        uses: docker/build-push-action@v6
+        with:
+          push: false
+          tags: ${{ github.run_id }}
+          target: test_and_publish
+          secrets: |
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # build:
+  #   name: Publish Packages with Docker
+
+  #   runs-on: ubuntu-latest
+
+  #   permissions:
+  #     contents: read
+  #     packages: write
+  #     # attestations: write
+  #     # id-token: write
+
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+
+  #     # Setup .npmrc file to publish to npm
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '22.x'
+  #         registry-url: 'https://npm.pkg.github.com'
+  #     - run: npm ci
+  #     - run: npm run lint
+  #     - run: npm test
+  #     - run: npm run publish:packages
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

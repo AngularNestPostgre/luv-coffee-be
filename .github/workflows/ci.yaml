@@ -17,6 +17,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -54,6 +58,23 @@ jobs:
           image-ref: ${{ github.run_id }}
           exit-code: 0
           format: table
+
+      - name: Run Trivy for HIGH,CRITICAL CVEs and report (blocking)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ github.run_id }}
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'HIGH,CRITICAL'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
 
       - name: Docker Build Image and Push to Docker Hub
         uses: docker/build-push-action@v6

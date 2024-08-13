@@ -1,5 +1,5 @@
 ---
-name: Publish Packages to npmjs
+name: Publish Packages
 
 on:
   release:

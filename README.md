@@ -61,7 +61,7 @@ https://github.com/settings/tokens
   2.1. Authenticate with personal access token (classic):
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
         Username: ngnestpostgres
-        Password: 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
+        Password: access_token_classic
   2.2 Run `npm run publish:packages`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
   3.1

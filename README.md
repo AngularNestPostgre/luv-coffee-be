@@ -70,7 +70,7 @@ https://github.com/settings/tokens
 1. Update versions in (versions must be the same):
   - package.json
   - packages/package.json
-  - .github/workflows/ci.yaml (tags hardcoding for prod) ?
+  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.

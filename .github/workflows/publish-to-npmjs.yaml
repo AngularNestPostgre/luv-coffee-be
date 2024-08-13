@@ -25,8 +25,8 @@ jobs:
     permissions:
       contents: read
       packages: write
-      attestations: write
-      id-token: write
+      # attestations: write
+      # id-token: write
 
     steps:
       - name: Checkout repository
@@ -42,4 +42,4 @@ jobs:
       - run: npm test
       - run: npm run publish:packages
         env:
-          NPM_FE_SHARED_TOKEN: ${{ secrets.NPM_FE_SHARED_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

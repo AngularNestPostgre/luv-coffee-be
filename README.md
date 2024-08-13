@@ -56,7 +56,10 @@ https://github.com/settings/tokens
   1.5. Add `//registry.npmjs.org/:_authToken=${NPM_FE_SHARED_TOKEN}` to `.npmrc`.
 
 ### Publish libraries/packages
-1. Update version in package.json.
+1. Update versions in (versions must be the same):
+  - package.json
+  - packages/package.json
+  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 2. Publish from local machine:
   2.1. Authenticate with personal access token (classic):
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
@@ -64,7 +67,7 @@ https://github.com/settings/tokens
         Password: access_token_classic
   2.2 Run `npm run publish:packages`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-  3.1
+  3.1 On `dev` branch update versions (see. p1), push to `origin/dev`, and create release.
 
 ### Release
 1. Update versions in (versions must be the same):

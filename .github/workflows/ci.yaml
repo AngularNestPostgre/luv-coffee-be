@@ -35,8 +35,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/NgNestPostgres/${{ env.IMAGE_NAME }}:${{ github.run_id }}
-          target: test
+          tags: ghcr.io/ngnestpostgres/${{ env.IMAGE_NAME }}:${{ github.run_id }}
+          target: ci
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64

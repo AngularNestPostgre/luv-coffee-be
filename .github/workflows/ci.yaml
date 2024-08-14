@@ -68,8 +68,8 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'HIGH,CRITICAL'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          # format: 'sarif'
+          # output: 'trivy-results.sarif'
 
       # Requires Advanced Security which is avalabale only for public and GitHub Enterprise
       # - name: Upload Trivy scan results to GitHub Security tab

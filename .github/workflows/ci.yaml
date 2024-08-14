@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      # actions: read # for github/codeql-action/upload-sarif
+      actions: read # for github/codeql-action/upload-sarif
       contents: read # for actions/checkout to fetch code
       packages: read # needed to pull docker image to ghcr.io
       # security-events: write # for github/codeql-action/upload-sarif to upload SARIF results

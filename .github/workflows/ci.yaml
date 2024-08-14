@@ -61,7 +61,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Unit Testing in Docker
-        run: docker run --rm ghcr.io/${{ env.GHCR }}/${{ env.IMAGE_NAME }}:${{ github.run_id }} npm run lint
+        run: docker run --rm ghcr.io/${{ env.GHCR }}/${{ env.IMAGE_NAME }}:${{ github.run_id }} npm run lint, npm test, npm run build
 
   # build-image:
   #   name: Build Image

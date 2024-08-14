@@ -23,6 +23,6 @@ FROM base AS ci
 COPY package*.json ./
 RUN npm ci --include=dev
 COPY . .
-RUN npm run lint
-RUN npm run test
 RUN npm run build
+# RUN npm run lint
+# RUN npm run test

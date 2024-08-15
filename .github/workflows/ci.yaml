@@ -58,7 +58,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Linting
+      - name: Build
+        run: docker run --rm ghcr.io/${{ env.GHCR }}/${{ env.IMAGE_NAME }}:${{ github.run_id }} npm run build
+
+      - name: Lint
         run: docker run --rm ghcr.io/${{ env.GHCR }}/${{ env.IMAGE_NAME }}:${{ github.run_id }} npm run lint
 
       - name: Unit Tests

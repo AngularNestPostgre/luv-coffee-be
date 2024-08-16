@@ -1,7 +1,7 @@
 {
-  "name": "@ngnestpostgres/packages",
+  "name": "@ngnestpostgres/luv-coffee-be",
   "author": "Andriy<veldymanov@gmail.com>",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "license": "MIT",
   "repository": {
     "type": "git",

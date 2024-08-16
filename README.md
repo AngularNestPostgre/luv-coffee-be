@@ -43,19 +43,20 @@
   1 Run `npm run docker:build:local:image` and
   2 Run `npm run docker:run:local:image`.
 
-## Libraries/Packages
-### Generate _authToken
+## Debugging
+In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
+
+# Libraries/Packages
+## GitHub Auth
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
 https://github.com/settings/tokens
 
-1. Personal Access Token (classic).
-  1.1. Generate `_authToken` for be with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
-  1.2. Generate `_authToken` for fe with `read` permissions.
-  1.3. In GitHub Actions add token as a secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
-  1.4. Add `env NPM_FE_SHARED_TOKEN` to GitHub Actions workflow
-  1.5. Add `//registry.npmjs.org/:_authToken=${NPM_FE_SHARED_TOKEN}` to `.npmrc`.
+1. Personal Access Token Classic (within the Organization)
+  1.1 Generate `access_token_classic` for `luv-coffee-be with` `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+  1.2 Generate `access_token_classic` for `luv-coffee-fe with` `read` permissions.
+  1.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
-### Publish libraries/packages
+## Publish libraries/packages
 1. Update versions in (versions must be the same):
   - package.json
   - packages/package.json
@@ -67,16 +68,7 @@ https://github.com/settings/tokens
         Password: access_token_classic
   2.2 Run `npm run publish:packages`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-  3.1 On `dev` branch update versions (see. p1), push to `origin/dev`, and create release.
-
-### Release
-1. Update versions in (versions must be the same):
-  - package.json
-  - packages/package.json
-  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
-
-## Debugging
-In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
+  3.1 On `dev` branch update versions (see. p1), push to `origin/dev`, and create release (set as pre-release).
 
 # TypeOrm
 ## DB Migrations
@@ -117,30 +109,32 @@ Run `npm run serve:local` (to run DB)
 ## DB Seeding
 https://github.com/w3tecch/typeorm-seeding
 
-
 # Unit tests
 Run `npm run test` to run all unit tests.
 Run `npm run test:watch -- coffees.service` to watch only one file.
 Run `npm run test:cov` to run all unit tests with test coverage.
-
 
 <!-- TODO: e2e tests have to be reajusted -->
 # e2e tests
 Run `yarn test:e2e:run` to run e2e tests.
 Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file.
 
+# CI
+
+# Release
+1. Update versions in (versions must be the same):
+  - package.json
+  - packages/package.json
+  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 
 # Deployment
 https://cloud.google.com/appengine/docs/the-appengine-environments
 
 Run `gcloud auth application-default login`
 
-
 ## GCP protected package.json scripts:
 "start" - setup in `app.dev.json` as a enntry point (defualt)
 "gcp-build" - used by AppEngine to built the application
-
-
 
 # Project Setup/Implementation Details
 
@@ -156,38 +150,6 @@ Store tokens (https://indepth.dev/posts/1382/localstorage-vs-cookies):
 Setup: https://wanago.io/2021/01/18/api-nestjs-cron-nodemailer/
 
 If you want to use Gmail with Nodemailer, you need to turn on the less secure apps (https://support.google.com/accounts/answer/6010255?hl=en) access as stated in the official Nodemailer documentation (https://nodemailer.com/usage/using-gmail/).
-
-## Docker commands to play
-```bash
-# Docker image digest
-# FROM node:lts-alpine@sha256:b2da3316acdc2bec442190a1fe10dc094e7ba4121d029cb32075ff59bb27390a
-$ docker pull node:lts-alpine
-$ docker images --digests
-
-# The -t option is for giving our image a name, i.e., tagging it.
-$ docker build -t luv-coffee-be .
-# runimage:
-$ docker run -p 3000:3000 luv-coffee-be
-$ docker images
-
-# Remove image
-$ docker rmi <your-image-id>
-```
-
-## Docker-Compose commands to play
-```bash
-$ docker-compose up
-$ docker-compose up --build -V
-$ docker-compose down
-$ docker ps
-$ docker inspect afa3a614c7ed | gzep IPAddress
-
-$ docker volume ls
-$ docker-compose down
-$ docker rm -f $(docker ps -a -q)
-$ docker volume rm $(docker volume ls -q)
-$ docker-compose up
-```
 
 ## gcloud to play
 - Run `gcloud --version`

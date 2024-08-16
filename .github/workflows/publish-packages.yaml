@@ -28,8 +28,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
       - name: Install Packges
         run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: npm run build
@@ -42,3 +40,5 @@ jobs:
 
       - name: Publish
         run: npm run publish:packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

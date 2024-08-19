@@ -19,7 +19,7 @@
     "build:luv-coffee-be": "nest build luv-coffee-be --tsc",
     "build:fe-shared": "nest build fe-shared --tsc",
     "build:fe-shared:watch": "nest build fe-shared --watch --tsc",
-    "copy:packagefiles": "cp libs/fe-shared/{package.json,README.md} packages/fe-shared",
+    "copy:packagefiles": "cp libs/fe-shared/package.json libs/fe-shared/README.md packages/fe-shared",
     "publish:fe-shared": "npm run build:fe-shared && npm run copy:packagefiles && npm publish ./packages/fe-shared",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",

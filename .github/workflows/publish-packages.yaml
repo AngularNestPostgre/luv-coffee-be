@@ -39,6 +39,6 @@ jobs:
         run: npm test
 
       - name: Publish
-        run: npm run publish:packages
+        run: npm run publish:fe-shared
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

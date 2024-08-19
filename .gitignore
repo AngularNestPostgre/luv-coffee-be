@@ -2,7 +2,7 @@
 
 # compiled output
 dist
-packages/fe-shared
+packages
 tmp
 out-tsc
 # Only exists if Bazel was run

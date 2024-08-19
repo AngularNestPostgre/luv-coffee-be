@@ -66,7 +66,7 @@ https://github.com/settings/tokens
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
         Username: ngnestpostgres
         Password: access_token_classic
-  2.2 Run `npm run publish:packages`.
+  2.2 Run `npm run publish:fe-shared`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
   3.1 On `dev` branch update versions (see. p1), push to `origin/dev`, and create release (set as pre-release).
 

@@ -1,7 +1,7 @@
 {
-  "name": "@ngnestpostgres/luv-coffee-be",
+  "name": "@ngnestpostgres/fe-shared",
   "author": "Andriy<veldymanov@gmail.com>",
-  "version": "0.0.26",
+  "version": "0.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@ngnestpostgres/luv-coffee-be",
-  "version": "0.0.26",
+  "version": "0.0.30",
   "repository": "https://github.com/NgNestPostgres/luv-coffee-be.git",
   "author": "Andriy<veldymanov@gmail.com>",
   "license": "MIT",
@@ -19,7 +19,8 @@
     "build:luv-coffee-be": "nest build luv-coffee-be --tsc",
     "build:fe-shared": "nest build fe-shared --tsc",
     "build:fe-shared:watch": "nest build fe-shared --watch --tsc",
-    "publish:packages": "npm run build:fe-shared && npm publish ./packages",
+    "copy:packagefiles": "cp libs/fe-shared/package.json libs/fe-shared/README.md packages/fe-shared",
+    "publish:fe-shared": "npm run build:fe-shared && npm run copy:packagefiles && npm publish ./packages/fe-shared",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

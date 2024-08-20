@@ -137,7 +137,7 @@ jobs:
           flavor: |
             latest=true
           tags: |
-            type=raw,value=0.0.26
+            type=raw,value=0.0.30
             # type=raw,value=latest,enable=${{ endsWith(github.ref, github.event.repository.default_branch) }}
             # type=ref,event=pr
             # type=ref,event=branch

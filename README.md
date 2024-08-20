@@ -4,20 +4,25 @@
 
 # Setup
 - Instlall nvm (https://github.com/nvm-sh/nvm).
-- Install Docker (https://docs.docker.com/desktop/).
+- Install Docker (https://docs.docker.com/desktop/):
+  1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
+    - `wsl --install` (PowerShell)
+    - `wsl --update` (PowerShell)
+  2. Microsoft store -> Ubuntu
+  3. Enable Ubuntu in Docker settings
 - Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
 
 - Run `nvm install 1.x.x`
-- Run `nvm use xx.x.x` (according to Dockerfile)
+- Run `nvm use x.x.x` (according to Dockerfile)
 - Run `npm i -g @nestjs/cli`
 - Run `npm install -g npm-check-updates`
 - Run `npx husky init`
 
 ## Dependencies CLI
 - `gcloud` (Google Cloud SDK)
-- `node` version xx.xx.x (according to Dockerfile)
+- `node` version x.x.x (according to Dockerfile)
 - `docker`, used only for local development
 - `@nestjs/cli`.
 
@@ -52,23 +57,23 @@ https://docs.github.com/en/packages/working-with-a-github-packages-registry/work
 https://github.com/settings/tokens
 
 1. Personal Access Token Classic (within the Organization)
-  1.1 Generate `access_token_classic` for `luv-coffee-be with` `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
-  1.2 Generate `access_token_classic` for `luv-coffee-fe with` `read` permissions.
+  1.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+  1.2 Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
   1.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ## Publish libraries/packages
-1. Update versions in (versions must be the same):
+1. Update versions in (versions the same???):
   - package.json
   - packages/package.json
   - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 2. Publish from local machine:
-  2.1. Authenticate with personal access token (classic):
+  2.1. Authenticate with personal access token (classic) with `write` permissions:
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
         Username: ngnestpostgres
         Password: access_token_classic
-  2.2 Run `npm run publish:packages`.
+  2.2 Run `npm run publish:fe-shared`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-  3.1 On `dev` branch update versions (see. p1), push to `origin/dev`, and create release (set as pre-release).
+  3.1 On `dev` branch create release (set as pre-release).
 
 # TypeOrm
 ## DB Migrations
@@ -120,14 +125,16 @@ Run `yarn test:e2e:run` to run e2e tests.
 Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file.
 
 # CI
+According to GitHub WorkFlows.
 
 # Release
-1. Update versions in (versions must be the same):
-  - package.json
-  - packages/package.json
+1. Create release branch `release_x.x.x`.
+2. Update versions in:
+  - package.json (version x.x.x as release branch)
+  - packages/package.json (version y.y.y)
   - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 
-# Deployment
+# Deployment ???
 https://cloud.google.com/appengine/docs/the-appengine-environments
 
 Run `gcloud auth application-default login`

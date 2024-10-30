@@ -14,8 +14,9 @@ import { EventsModule } from './modules/events/events.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { Env } from '@common/enums/env.enum';
 
+// If needed to run the app outside Docker
+// import { Env } from '@common/enums/env.enum';
 // const ENV: Env = process.env.NODE_ENV as Env;
 
 @Module({
@@ -38,8 +39,9 @@ import { AppService } from './app.service';
       }),
     }),
     ConfigModule.forRoot({
+      // If needed to run the app outside Docker
       // envFilePath: !ENV ? '.env/.env.local' : `.env/.env.${ENV}`,
-      ignoreEnvFile: true,
+      ignoreEnvFile: true, // 'false' if needed to run the app outside Docker
       validationSchema: Joi.object({
         SERVER_PORT: Joi.number().default(8080),
         DB_NAME: Joi.required(),

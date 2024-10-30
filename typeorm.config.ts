@@ -14,5 +14,5 @@ export default new DataSource({
   port: 5432,
   password: 'pass123',
   entities: [], // Insert right entities for migration
-  migrations: [SchemaSync1643620954485, SchemaSync1711700291982], // Insert right migration for migration run
+  migrations: [SchemaSync1643620954485, SchemaSync1711700291982], // Insert right migrations for migration run
 });

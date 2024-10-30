@@ -4,12 +4,15 @@
 
 # Setup
 - Instlall nvm (https://github.com/nvm-sh/nvm).
-- Install Docker (https://docs.docker.com/desktop/):
-  1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
-    - `wsl --install` (PowerShell)
-    - `wsl --update` (PowerShell)
-  2. Microsoft store -> Ubuntu
-  3. Enable Ubuntu in Docker settings
+- Install Docker:
+    1. Docker Desktop (https://docs.docker.com/desktop/):
+      1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
+        - `wsl --install` (PowerShell)
+        - `wsl --update` (PowerShell)
+      2. Microsoft store -> Ubuntu
+      3. Enable Ubuntu in Docker settings
+    2. Without Docker Desktop
+      - https://docs.docker.com/engine/install/ubuntu/
 - Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
@@ -37,6 +40,10 @@
   - run `npm run compose:local:update`,
   - and don't forget to remove old docker volume.
 2. Or run `npm run compose:local` if no new npm modules were installed.
+
+
+
+fd:// --containerd=/run/containerd/containerd.sock
 
 ## Development targeted to dev DB (needs testing!!!! move to docker!!!!)
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)

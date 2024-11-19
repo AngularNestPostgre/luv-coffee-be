@@ -141,11 +141,14 @@ Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file
 According to GitHub WorkFlows.
 
 # Release
-1. Create release branch `release_x.x.x`.
+1. Create release branch `release_x.y.z`.
 2. Update versions in:
-  - package.json (version x.x.x as release branch)
-  - packages/package.json (version y.y.y)
-  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
+  - package.json (version x.y.z as release branch)
+  - packages/package.json (version x.y.z)
+  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
+3. Make PR `release_x.y.z` to `dev`.
+4. Publish packages: on `dev` branch create release.
+5. Make PR `dev` to `main`.
 
 # Deployment ???
 https://cloud.google.com/appengine/docs/the-appengine-environments

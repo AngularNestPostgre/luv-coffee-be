@@ -6,13 +6,19 @@
 - Instlall nvm (https://github.com/nvm-sh/nvm).
 - Install Docker:
     1. Docker Desktop (https://docs.docker.com/desktop/):
-      1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
+      1.1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
         - `wsl --install` (PowerShell)
         - `wsl --update` (PowerShell)
-      2. Microsoft store -> Ubuntu
-      3. Enable Ubuntu in Docker settings
+      1.2. Microsoft store -> Ubuntu
+      1.3. Enable Ubuntu in Docker settings
     2. Without Docker Desktop
-      - https://docs.docker.com/engine/install/ubuntu/
+      2.1. https://docs.docker.com/engine/install/ubuntu/
+      2.2. Copy project from Windows file system to WSL. In WSL terminal:
+        - Copy project to Ubuntu:
+          - `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
+        - Run VS Code on WSL. In terminal:
+          - `cd ~/luv-coffee-be`
+          - `code .`
 - Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
@@ -42,9 +48,6 @@
 2. Or run `npm run compose:local` if no new npm modules were installed.
 
 
-
-fd:// --containerd=/run/containerd/containerd.sock
-
 ## Development targeted to dev DB (needs testing!!!! move to docker!!!!)
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
 - Run `npm run db:proxy` in the first terminal.
@@ -59,19 +62,22 @@ fd:// --containerd=/run/containerd/containerd.sock
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
 
 # Libraries/Packages
-## GitHub Auth
+
+## Private GitHub Library
+### GitHub Auth
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
 https://github.com/settings/tokens
-
 1. Personal Access Token Classic (within the Organization)
   1.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
   1.2 Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
   1.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
-## Publish libraries/packages
+### Publish libraries/packages
+0. Create release branch:
+  - example: `git checkout -b release_0.0.31`
 1. Update versions in (versions the same???):
   - package.json
-  - packages/package.json
+  - libs/package.json
   - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 2. Publish from local machine:
   2.1. Authenticate with personal access token (classic) with `write` permissions:
@@ -135,11 +141,13 @@ Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file
 According to GitHub WorkFlows.
 
 # Release
-1. Create release branch `release_x.x.x`.
+1. Create release branch `release_x.y.z`.
 2. Update versions in:
-  - package.json (version x.x.x as release branch)
-  - packages/package.json (version y.y.y)
-  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
+  - package.json (version x.y.z as release branch)
+  - packages/package.json (version x.y.z)
+  - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
+3. Make PR `release_x.y.z` to `dev`.
+4. Make PR `dev` to `main`.
 
 # Deployment ???
 https://cloud.google.com/appengine/docs/the-appengine-environments

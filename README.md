@@ -73,20 +73,23 @@ https://github.com/settings/tokens
   1.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ### Publish libraries/packages
-0. Create release branch:
+1. Create `release` branch from `dev` branch:
   - example: `git checkout -b release_0.0.31`
-1. Update versions in (versions the same???):
+2. Update versions in (versions the same???):
   - package.json
   - libs/package.json
   - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
-2. Publish from local machine:
-  2.1. Authenticate with personal access token (classic) with `write` permissions:
+3. Publish from local machine:
+  3.1. Authenticate with personal access token (classic) with `write` permissions:
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
         Username: ngnestpostgres
         Password: access_token_classic
-  2.2 Run `npm run publish:fe-shared`.
-3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-  3.1 On `dev` branch create release (set as pre-release).
+  3.2 Run `npm run publish:fe-shared`.
+4. Publish with GitHub Actions
+(https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
+  4.1 Pull Request `release_0.0.31` to `dev`
+  4.2 On `dev` branch create release (set as pre-release).
+  4.3 Pull Request `dev` to `main`
 
 # TypeOrm
 ## DB Migrations

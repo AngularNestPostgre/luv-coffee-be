@@ -16,7 +16,7 @@
       2.2. Copy project from Windows file system to WSL. In WSL terminal:
         - Copy project to Ubuntu:
           - `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
-        - Run VS Code on WSL:
+        - Run VS Code on WSL. In terminal:
           - `cd ~/luv-coffee-be`
           - `code .`
 - Install Cloud SDK (https://cloud.google.com/sdk/docs/install).

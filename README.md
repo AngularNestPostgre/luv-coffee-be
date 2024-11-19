@@ -73,9 +73,11 @@ https://github.com/settings/tokens
   1.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ### Publish libraries/packages
+0. Create release branch:
+  - example: `git checkout -b release_0.0.31`
 1. Update versions in (versions the same???):
   - package.json
-  - packages/package.json
+  - libs/package.json
   - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 2. Publish from local machine:
   2.1. Authenticate with personal access token (classic) with `write` permissions:

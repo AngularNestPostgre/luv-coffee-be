@@ -67,10 +67,15 @@ In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
 ### GitHub Auth
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
 https://github.com/settings/tokens
-1. Personal Access Token Classic (within the Organization)
-  1.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
-  1.2 Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
-  1.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+
+1. Authenticate with personal access token (classic) with `write` permissions:
+  - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
+      Username: angularnestpostgre
+      Password: access_token_classic
+2. Personal Access Token Classic (within the Organization)
+  2.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+  2.2 Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
+  2.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ### Publish libraries/packages
 0. Create release branch:

@@ -75,7 +75,7 @@ https://github.com/settings/tokens
 
 1. Authenticate with personal access token (classic) with `write` permissions:
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
-        - Username: ngnestpostgres <br />
+        - Username: ngnestpostgres
         - Password: access_token_classic
 2. Personal Access Token Classic (within the Organization)
     1. Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
@@ -115,7 +115,7 @@ According to GitHub WorkFlows.
     - packages/package.json (version x.y.z)
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
 3. Make PR `release_x.y.z` to `dev`.
-4. Make PR `dev` to `main`.
+4. Make PR `release_x.y.z` to `main`.
 
 # TypeOrm
 ## DB Migrations

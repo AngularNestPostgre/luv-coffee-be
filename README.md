@@ -26,8 +26,8 @@
 
 - Clone repo:
     - Run `git clone https://github.com/NgNestPostgres/luv-coffee-be.git`
-        Username for 'https://github.com': ngnestpostgres
-        Password for 'https://ngnestpostgres@github.com': access_token_classic
+        - Username for 'https://github.com': ngnestpostgres
+        - Password for 'https://ngnestpostgres@github.com': access_token_classic
 
 - Run `nvm install 1.x.x`
 - Run `nvm use x.x.x` (according to Dockerfile)
@@ -74,8 +74,8 @@ https://github.com/settings/tokens
 
 1. Authenticate with personal access token (classic) with `write` permissions:
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
-        Username: ngnestpostgres <br />
-        Password: access_token_classic
+        - Username: ngnestpostgres <br />
+        - Password: access_token_classic
 2. Personal Access Token Classic (within the Organization)
     2.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
     2.2 Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.

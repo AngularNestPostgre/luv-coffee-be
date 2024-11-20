@@ -3,6 +3,7 @@
 - https://medium.com/@avinashanshu.iitb/create-a-multiple-nest-package-and-publish-it-privately-and-publically-8003dde4497e
 
 # Setup
+- Install Git.
 - Instlall nvm (https://github.com/nvm-sh/nvm).
 - Install Docker:
     1. Docker Desktop (https://docs.docker.com/desktop/):
@@ -22,6 +23,11 @@
 - Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
 - If you are not on Windows x64:
   Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
+
+- Clone repo:
+  - Run `git clone https://github.com/NgNestPostgres/luv-coffee-be.git`
+    Username for 'https://github.com': ngnestpostgres
+    Password for 'https://ngnestpostgres@github.com': access_token_classic
 
 - Run `nvm install 1.x.x`
 - Run `nvm use x.x.x` (according to Dockerfile)
@@ -47,7 +53,6 @@
   - and don't forget to remove old docker volume.
 2. Or run `npm run compose:local` if no new npm modules were installed.
 
-
 ## Development targeted to dev DB (needs testing!!!! move to docker!!!!)
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
 - Run `npm run db:proxy` in the first terminal.
@@ -62,15 +67,14 @@
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
 
 # Libraries/Packages
-
 ## Private GitHub Library
-### GitHub Auth
+### GitHub Registry Auth
 https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry
 https://github.com/settings/tokens
 
 1. Authenticate with personal access token (classic) with `write` permissions:
   - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
-      Username: angularnestpostgre
+      Username: ngnestpostgres
       Password: access_token_classic
 2. Personal Access Token Classic (within the Organization)
   2.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
@@ -85,10 +89,7 @@ https://github.com/settings/tokens
   - libs/package.json
   - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 2. Publish from local machine:
-  2.1. Authenticate with personal access token (classic) with `write` permissions:
-    - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
-        Username: ngnestpostgres
-        Password: access_token_classic
+  2.1 Authenticate to GitHub Registry (see [GitHub Registry Auth](#gitHub-registry-auth))
   2.2 Run `npm run publish:fe-shared`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
   3.1 On `dev` branch create release (set as pre-release).

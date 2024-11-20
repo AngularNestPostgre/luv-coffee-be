@@ -7,14 +7,14 @@
 - Instlall nvm (https://github.com/nvm-sh/nvm).
 - Install Docker:
     1. Docker Desktop (https://docs.docker.com/desktop/):
-        1.1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
+        1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
             - `wsl --install` (PowerShell)
             - `wsl --update` (PowerShell)
-        1.2. Microsoft store -> Ubuntu
-        1.3. Enable Ubuntu in Docker settings
+        2. Microsoft store -> Ubuntu
+        3. Enable Ubuntu in Docker settings
     2. Without Docker Desktop
-        2.1. https://docs.docker.com/engine/install/ubuntu/
-        2.2. Copy project from Windows file system to WSL. In WSL terminal:
+        1. https://docs.docker.com/engine/install/ubuntu/
+        2. Copy project from Windows file system to WSL. In WSL terminal:
             - Copy project to Ubuntu:
                 - `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
             - Run VS Code on WSL. In terminal:
@@ -60,8 +60,8 @@
 
 ## Run build locally
 - Run `npm run compose:local:db` in the first terminal. Then:
-    1 Run `npm run docker:build:local:image` and
-    2 Run `npm run docker:run:local:image`.
+    1. Run `npm run docker:build:local:image` and
+    2. Run `npm run docker:run:local:image`.
 
 ## Debugging
 In VS Code open only luv-coffee-be project. Use VS Code debugging tools.
@@ -77,9 +77,9 @@ https://github.com/settings/tokens
         - Username: ngnestpostgres <br />
         - Password: access_token_classic
 2. Personal Access Token Classic (within the Organization)
-    2.1 Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
-    2.2 Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
-    2.3* In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+    1. Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+    2. Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
+    3. * In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ### Publish libraries/packages
 0. Create release branch:
@@ -89,16 +89,16 @@ https://github.com/settings/tokens
     - libs/package.json
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)
 2. Publish from local machine:
-    2.1 Authenticate to GitHub Registry (see [GitHub Registry Auth](#gitHub-registry-auth))
-    2.2 Run `npm run publish:fe-shared`.
+    1. Authenticate to GitHub Registry (see [GitHub Registry Auth](#gitHub-registry-auth))
+    2. Run `npm run publish:fe-shared`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-    3.1 On `dev` branch create release (set as pre-release).
+    1. On `dev` branch create release (set as pre-release).
 
 # TypeOrm
 ## DB Migrations
 Run `npm run serve:local` (to run DB)
 
-1a. Create migration (create SQL changes manually)
+1. a. Create migration (create SQL changes manually)
     - Set migration path in
         `"typeorm:create-migration": "npx typeorm migration:create src/db/migrations/CoffeeRefactor"`
         by changing `CoffeeRefactor` to the right name.
@@ -107,7 +107,7 @@ Run `npm run serve:local` (to run DB)
     - In `typeorm.config.ts` file in `migrations` array add migration class `CoffeeRefactor1711698670588` from created `1711698670588-CoffeeRefactor.ts` file.
     - Run `npm run typeorm:migrate:local`. (Be sure that application must be built before `npx typeorm migration:run -d dist/typeorm.config`)
 
-1b. Generate migration (let typeorm generate SQL changes)
+1. b. Generate migration (let typeorm generate SQL changes)
     - In `typeorm.config.ts` file in `entities` array add entities (entities: [Coffee, Flavor]):
         `import { Coffee } from './src/modules/coffees/entities/coffee.entity';`
         `import { Flavor } from './src/modules/coffees/entities/flavor.entity';`

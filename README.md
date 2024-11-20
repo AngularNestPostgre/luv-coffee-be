@@ -85,7 +85,7 @@ https://github.com/settings/tokens
 ### Publish libraries/packages
 0. Create release branch:
     - example: `git checkout -b release_x.y.z`
-1. Update versions in (versions the same???):
+1. Update versions in (versions are the same!!!):
     - package.json
     - libs/package.json
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z)

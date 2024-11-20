@@ -84,7 +84,7 @@ https://github.com/settings/tokens
 
 ### Publish libraries/packages
 0. Create release branch:
-    - example: `git checkout -b release_0.0.31`
+    - example: `git checkout -b release_x.y.z`
 1. Update versions in (versions the same???):
     - package.json
     - libs/package.json
@@ -94,6 +94,28 @@ https://github.com/settings/tokens
     2. Run `npm run publish:fe-shared`.
 3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
     1. On `dev` branch create release (set as pre-release).
+
+# Unit tests
+- Run `npm run test` to run all unit tests.
+- Run `npm run test:watch -- coffees.service` to watch only one file.
+- Run `npm run test:cov` to run all unit tests with test coverage.
+
+<!-- TODO: e2e tests have to be reajusted -->
+# e2e tests
+- Run `yarn test:e2e:run` to run e2e tests.
+- Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file.
+
+# CI
+According to GitHub WorkFlows.
+
+# Release
+1. Create release branch `release_x.y.z`.
+2. Update versions in:
+    - package.json (version x.y.z as release branch)
+    - packages/package.json (version x.y.z)
+    - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
+3. Make PR `release_x.y.z` to `dev`.
+4. Make PR `dev` to `main`.
 
 # TypeOrm
 ## DB Migrations
@@ -133,28 +155,6 @@ Run `npm run serve:local` (to run DB)
 
 ## DB Seeding
 https://github.com/w3tecch/typeorm-seeding
-
-# Unit tests
-- Run `npm run test` to run all unit tests.
-- Run `npm run test:watch -- coffees.service` to watch only one file.
-- Run `npm run test:cov` to run all unit tests with test coverage.
-
-<!-- TODO: e2e tests have to be reajusted -->
-# e2e tests
-- Run `yarn test:e2e:run` to run e2e tests.
-- Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file.
-
-# CI
-According to GitHub WorkFlows.
-
-# Release
-1. Create release branch `release_x.y.z`.
-2. Update versions in:
-    - package.json (version x.y.z as release branch)
-    - packages/package.json (version x.y.z)
-    - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
-3. Make PR `release_x.y.z` to `dev`.
-4. Make PR `dev` to `main`.
 
 # Deployment ???
 https://cloud.google.com/appengine/docs/the-appengine-environments

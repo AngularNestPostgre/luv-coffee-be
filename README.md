@@ -33,6 +33,7 @@
 - Run `nvm use x.x.x` (according to Dockerfile)
 - Run `npm i -g @nestjs/cli`
 - Run `npm install -g npm-check-updates`
+- Run `npm i`
 - Run `npx husky init`
 
 ## Dependencies CLI

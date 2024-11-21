@@ -80,7 +80,7 @@ https://github.com/settings/tokens
 2. Personal Access Token Classic (within the Organization)
     1. Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
     2. Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
-    3. * In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+    3. * In `luv-coffee-fe` repo add token as `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ### Publish libraries/packages
 0. Create release branch:
@@ -92,7 +92,8 @@ https://github.com/settings/tokens
 2. Publish from local machine:
     1. Authenticate to GitHub Registry (see [GitHub Registry Auth](#gitHub-registry-auth))
     2. Run `npm run publish:fe-shared`.
-3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
+3. Publish with GitHub Actions
+  (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
     1. On `dev` branch create release (set as pre-release).
 
 # Unit tests
@@ -116,6 +117,7 @@ According to GitHub WorkFlows.
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
 3. Make PR `release_x.y.z` to `dev`.
 4. Make PR `release_x.y.z` to `main`.
+5. On `main` branch create release.
 
 # TypeOrm
 ## DB Migrations

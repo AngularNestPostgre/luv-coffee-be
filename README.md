@@ -5,25 +5,7 @@
 # Setup
 - Install Git.
 - Instlall nvm (https://github.com/nvm-sh/nvm).
-- Install Docker:
-    1. Docker Desktop (https://docs.docker.com/desktop/):
-        1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
-            - `wsl --install` (PowerShell)
-            - `wsl --update` (PowerShell)
-        2. Microsoft store -> Ubuntu
-        3. Enable Ubuntu in Docker settings
-    2. Without Docker Desktop
-        1. https://docs.docker.com/engine/install/ubuntu/
-        2. Copy project from Windows file system to WSL. In WSL terminal:
-            - Copy project to Ubuntu:
-                - `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
-            - Run VS Code on WSL. In terminal:
-                - `cd ~/luv-coffee-be`
-                - `code .`
-- Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
-- If you are not on Windows x64:
-  Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
-
+- Install VS Code.
 - Clone repo:
     - Run `git clone https://github.com/NgNestPostgres/luv-coffee-be.git`
         - Username for 'https://github.com': ngnestpostgres
@@ -35,6 +17,23 @@
 - Run `npm install -g npm-check-updates`
 - Run `npm i`
 - Run `npx husky init`
+- Install WSL (https://code.visualstudio.com/docs/remote/wsl):
+    - In PowerShell:
+        - `wsl --install`
+        - `wsl --update`
+    - In WSL terminal:
+        - Install all global npm packages (see above).
+        - Install Docker: https://docs.docker.com/engine/install/ubuntu/
+        - `sudo apt-get update`
+        - Copy project to Ubuntu:
+            `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
+        - `cd ~/luv-coffee-be`
+        - `code .`
+<!-- TODO: update after GCP setup
+- Install Cloud SDK (https://cloud.google.com/sdk/docs/install)
+- If you are not on Windows x64:
+  Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
+-->
 
 ## Dependencies CLI
 - `gcloud` (Google Cloud SDK)

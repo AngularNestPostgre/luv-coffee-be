@@ -87,9 +87,9 @@ https://github.com/settings/tokens
 1. Authenticate with personal access token (classic) with `write` permissions:
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
         - Username: ngnestpostgres
-        - Password: access_token_classic
+        - Password: access_token_classic (`pass-token`)
 2. Personal Access Token Classic (within the Organization)
-    1. Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+    1. Generate `access_token_classic` for `luv-coffee-be` with `workflow` and `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
     2. Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
     3. * In `luv-coffee-fe` repo add token as `Actions` secret with the name `NPM_FE_SHARED_TOKEN` with value `access_token_classic`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
@@ -125,11 +125,12 @@ According to GitHub WorkFlows.
 1. Create release branch `release_x.y.z`.
 2. Update versions in:
     - package.json (version x.y.z as release branch)
-    - packages/package.json (version x.y.z as release branch)
+    - libs/fe-shared/package.json (version x.y.z as release branch)
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
-3. Make PR and merge `release_x.y.z` to `main`.
-4. Make PR and merge `main` to `dev`.
-5. In GitHub on `main` branch create release (to trigger packages publishing).
+3. Update package-lock.json: `npm i`
+4. Make PR and merge `release_x.y.z` to `main`.
+5. Make PR and merge `main` to `dev`.
+6. In GitHub on `main` branch create release (to trigger packages publishing).
 
 # TypeOrm
 ## DB Migrations

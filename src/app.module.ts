@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
-import * as Joi from '@hapi/joi';
+import * as Joi from 'joi';
 
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';

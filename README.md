@@ -5,25 +5,7 @@
 # Setup
 - Install Git.
 - Instlall nvm (https://github.com/nvm-sh/nvm).
-- Install Docker:
-    1. Docker Desktop (https://docs.docker.com/desktop/):
-        1. Install WSL (https://learn.microsoft.com/en-us/windows/wsl/install):
-            - `wsl --install` (PowerShell)
-            - `wsl --update` (PowerShell)
-        2. Microsoft store -> Ubuntu
-        3. Enable Ubuntu in Docker settings
-    2. Without Docker Desktop
-        1. https://docs.docker.com/engine/install/ubuntu/
-        2. Copy project from Windows file system to WSL. In WSL terminal:
-            - Copy project to Ubuntu:
-                - `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
-            - Run VS Code on WSL. In terminal:
-                - `cd ~/luv-coffee-be`
-                - `code .`
-- Install Cloud SDK (https://cloud.google.com/sdk/docs/install).
-- If you are not on Windows x64:
-  Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
-
+- Install VS Code.
 - Clone repo:
     - Run `git clone https://github.com/NgNestPostgres/luv-coffee-be.git`
         - Username for 'https://github.com': ngnestpostgres
@@ -35,9 +17,32 @@
 - Run `npm install -g npm-check-updates`
 - Run `npm i`
 - Run `npx husky init`
+- Install WSL (https://code.visualstudio.com/docs/remote/wsl):
+    - In PowerShell:
+        - `wsl --install`
+        - `wsl --update`
+    - In WSL terminal:
+        - Install all global npm packages (see above).
+        - Install Docker: https://docs.docker.com/engine/install/ubuntu/
+        - `sudo apt-get update`
+        <!-- Use next step instead
+        - Copy project to Ubuntu:
+            `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
+        - `cd ~/luv-coffee-be`
+        - `code .`
+        -->
+- Run project in WSL. In VS Code:
+    1. Open project.
+    2. Open WLS terminal.
+    3. Run: `code .`
+<!-- TODO: update after GCP setup
+- Install Cloud SDK (https://cloud.google.com/sdk/docs/install)
+- If you are not on Windows x64:
+  Install Cloud SQL Auth Proxy (https://cloud.google.com/sql/docs/postgres/connect-admin-proxy#connecting-client).
+-->
 
 ## Dependencies CLI
-- `gcloud` (Google Cloud SDK)
+<!-- - `gcloud` (Google Cloud SDK) -->
 - `node` version x.x.x (according to Dockerfile)
 - `docker`, used only for local development
 - `@nestjs/cli`.
@@ -45,19 +50,25 @@
 ## Update npm packages
 - Run `ncu`
 - Run `ncu -u`
-- Run `gcloud components update`
+<!-- - Run `gcloud components update` -->
 
 # Development
 ## Development targeted to local DB
 1. After each `npm install`:
     - run `npm run compose:local:update`,
-    - and don't forget to remove old docker volume.
+    - and don't forget to remove old docker images and volumes:
+        - docker image ls
+        - docker image rm 07e
+        - docker volume ls
+        - docker volume prune
 2. Or run `npm run compose:local` if no new npm modules were installed.
 
-## Development targeted to dev DB (needs testing!!!! move to docker!!!!)
+<!-- (needs testing!!!! move to docker!!!!)
+## Development targeted to dev DB
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
 - Run `npm run db:proxy` in the first terminal.
 - Run `npm run serve:dev` in the second terminal.
+ -->
 
 ## Run build locally
 - Run `npm run compose:local:db` in the first terminal. Then:
@@ -76,11 +87,11 @@ https://github.com/settings/tokens
 1. Authenticate with personal access token (classic) with `write` permissions:
     - Run `npm login --scope=@ngnestpostgres --auth-type=legacy --registry=https://npm.pkg.github.com`
         - Username: ngnestpostgres
-        - Password: access_token_classic
+        - Password: access_token_classic (`pass-token`)
 2. Personal Access Token Classic (within the Organization)
-    1. Generate `access_token_classic` for `luv-coffee-be` with `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
+    1. Generate `access_token_classic` for `luv-coffee-be` with `workflow` and `read/write` and `repo/repo:status/repo_deployment/public_repo/repo:invite/security:ivents` permissions.
     2. Generate `access_token_classic` for `luv-coffee-fe` with `read` permissions.
-    3. * In `luv-coffee-fe` repo add token as a `Actions` secret with the name `NPM_FE_SHARED_TOKEN`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+    3. * In `luv-coffee-fe` repo add token as `Actions` secret with the name `NPM_FE_SHARED_TOKEN` with value `access_token_classic`. (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
 
 ### Publish libraries/packages
 0. Create release branch:
@@ -92,18 +103,20 @@ https://github.com/settings/tokens
 2. Publish from local machine:
     1. Authenticate to GitHub Registry (see [GitHub Registry Auth](#gitHub-registry-auth))
     2. Run `npm run publish:fe-shared`.
-3. Publish with GitHub Actions (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-    1. On `dev` branch create release (set as pre-release).
+3. Publish with GitHub Actions
+  (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
+    - On `dev` branch create release (set as pre-release).
 
 # Unit tests
 - Run `npm run test` to run all unit tests.
 - Run `npm run test:watch -- coffees.service` to watch only one file.
 - Run `npm run test:cov` to run all unit tests with test coverage.
 
-<!-- TODO: e2e tests have to be reajusted -->
+<!-- TODO: e2e tests have to be reajusted
 # e2e tests
 - Run `yarn test:e2e:run` to run e2e tests.
 - Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file.
+-->
 
 # CI
 According to GitHub WorkFlows.
@@ -112,10 +125,12 @@ According to GitHub WorkFlows.
 1. Create release branch `release_x.y.z`.
 2. Update versions in:
     - package.json (version x.y.z as release branch)
-    - packages/package.json (version x.y.z)
+    - libs/fe-shared/package.json (version x.y.z as release branch)
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
-3. Make PR `release_x.y.z` to `dev`.
-4. Make PR `release_x.y.z` to `main`.
+3. Update package-lock.json: `npm i`
+4. Make PR and merge `release_x.y.z` to `main`.
+5. Make PR and merge `main` to `dev`.
+6. In GitHub on `main` branch create release (to trigger packages publishing).
 
 # TypeOrm
 ## DB Migrations
@@ -144,7 +159,8 @@ Run `npm run serve:local` (to run DB)
   - Run `npm run db:migration:revert:local`
   - Run `npm run db:migration:status:local`
 
-3. dev environment migrations:
+<!-- TODO: change after setup
+  3. dev environment migrations:
   (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
     - in the first terminal:
         Run `yarn db:proxy`
@@ -152,11 +168,13 @@ Run `npm run serve:local` (to run DB)
         Run `yarn db:migrate:dev`
         Run `yarn db:migration:revert:dev`
         Run `yarn db:migration:status:dev`
+-->
 
 ## DB Seeding
 https://github.com/w3tecch/typeorm-seeding
 
-# Deployment ???
+<!-- TODO: change after setup
+# Deployment
 https://cloud.google.com/appengine/docs/the-appengine-environments
 
 - Run `gcloud auth application-default login`
@@ -164,6 +182,7 @@ https://cloud.google.com/appengine/docs/the-appengine-environments
 ## GCP protected package.json scripts:
     "start" - setup in `app.dev.json` as a enntry point (defualt)
     "gcp-build" - used by AppEngine to built the application
+-->
 
 # Project Setup/Implementation Details
 

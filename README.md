@@ -56,13 +56,19 @@
 ## Development targeted to local DB
 1. After each `npm install`:
     - run `npm run compose:local:update`,
-    - and don't forget to remove old docker volume.
+    - and don't forget to remove old docker images and volumes:
+        - docker image ls
+        - docker image rm 07e
+        - docker volume ls
+        - docker volume prune
 2. Or run `npm run compose:local` if no new npm modules were installed.
 
-## Development targeted to dev DB (needs testing!!!! move to docker!!!!)
+<!-- (needs testing!!!! move to docker!!!!)
+## Development targeted to dev DB
 (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
 - Run `npm run db:proxy` in the first terminal.
 - Run `npm run serve:dev` in the second terminal.
+ -->
 
 ## Run build locally
 - Run `npm run compose:local:db` in the first terminal. Then:
@@ -106,10 +112,11 @@ https://github.com/settings/tokens
 - Run `npm run test:watch -- coffees.service` to watch only one file.
 - Run `npm run test:cov` to run all unit tests with test coverage.
 
-<!-- TODO: e2e tests have to be reajusted -->
+<!-- TODO: e2e tests have to be reajusted
 # e2e tests
 - Run `yarn test:e2e:run` to run e2e tests.
 - Run `jest --config ./test/jest-e2e.json -- coffees` to run e2e for just one file.
+-->
 
 # CI
 According to GitHub WorkFlows.
@@ -151,7 +158,8 @@ Run `npm run serve:local` (to run DB)
   - Run `npm run db:migration:revert:local`
   - Run `npm run db:migration:status:local`
 
-3. dev environment migrations:
+<!-- TODO: change after setup
+  3. dev environment migrations:
   (local cloud-sql-proxy must be authenticated: gcloud auth application-default login)
     - in the first terminal:
         Run `yarn db:proxy`
@@ -159,11 +167,13 @@ Run `npm run serve:local` (to run DB)
         Run `yarn db:migrate:dev`
         Run `yarn db:migration:revert:dev`
         Run `yarn db:migration:status:dev`
+-->
 
 ## DB Seeding
 https://github.com/w3tecch/typeorm-seeding
 
-# Deployment ???
+<!-- TODO: change after setup
+# Deployment
 https://cloud.google.com/appengine/docs/the-appengine-environments
 
 - Run `gcloud auth application-default login`
@@ -171,6 +181,7 @@ https://cloud.google.com/appengine/docs/the-appengine-environments
 ## GCP protected package.json scripts:
     "start" - setup in `app.dev.json` as a enntry point (defualt)
     "gcp-build" - used by AppEngine to built the application
+-->
 
 # Project Setup/Implementation Details
 

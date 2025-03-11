@@ -42,7 +42,7 @@
 -->
 
 ## Dependencies CLI
-- `gcloud` (Google Cloud SDK)
+<!-- - `gcloud` (Google Cloud SDK) -->
 - `node` version x.x.x (according to Dockerfile)
 - `docker`, used only for local development
 - `@nestjs/cli`.
@@ -50,7 +50,7 @@
 ## Update npm packages
 - Run `ncu`
 - Run `ncu -u`
-- Run `gcloud components update`
+<!-- - Run `gcloud components update` -->
 
 # Development
 ## Development targeted to local DB

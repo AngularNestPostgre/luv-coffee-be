@@ -56,7 +56,11 @@
 ## Development targeted to local DB
 1. After each `npm install`:
     - run `npm run compose:local:update`,
-    - and don't forget to remove old docker volume.
+    - and don't forget to remove old docker images and volumes:
+        - docker image ls
+        - docker image rm 07e
+        - docker volume ls
+        - docker volume prune
 2. Or run `npm run compose:local` if no new npm modules were installed.
 
 <!-- (needs testing!!!! move to docker!!!!)

@@ -36,7 +36,7 @@ export class AuthController {
       ...createUserDto,
       role: UserRole.NotActivated,
     });
-    await this.userEmailService.sendVerificationLink(user);
+    // await this.userEmailService.sendVerificationLink(user);
     return user;
   }
 

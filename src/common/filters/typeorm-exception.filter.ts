@@ -9,7 +9,9 @@ import { TypeORMError } from 'typeorm';
 import { Response } from 'express';
 
 @Catch(TypeORMError)
-export class TypeormExceptionFilter<T extends TypeORMError> implements ExceptionFilter {
+export class TypeormExceptionFilter<T extends TypeORMError>
+  implements ExceptionFilter
+{
   catch(exception: T, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();

@@ -7,7 +7,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import { compare, genSalt, hash } from 'bcryptjs';
 
 import { JsonWebTokenService } from '@common/services/json-web-token/json-web-token.service';
 
@@ -60,10 +60,8 @@ export class UsersService {
   }
 
   public async create(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const hashedPassword = await bcrypt.hash(
-      createUserDto.password,
-      bcrypt.genSaltSync(8),
-    );
+    const salt = await genSalt(10);
+    const hashedPassword = await hash(createUserDto.password, salt);
     const user = await this.userRepository.create({
       ...createUserDto,
       password: hashedPassword,
@@ -117,7 +115,7 @@ export class UsersService {
   ): Promise<UserEntity> {
     const user = await this.findById(userId);
 
-    const isRefreshTokenMatching = await bcrypt.compare(
+    const isRefreshTokenMatching = await compare(
       refreshToken,
       user?.refreshToken,
     );
@@ -136,7 +134,7 @@ export class UsersService {
   }
 
   public async setRefreshToken(refreshToken: string, userId: number) {
-    const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    const hashedRefreshToken = await hash(refreshToken, 10);
 
     await this.update(userId, {
       refreshToken: hashedRefreshToken,

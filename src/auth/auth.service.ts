@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as bcrypt from 'bcrypt';
+import { compare } from 'bcryptjs';
 
 import { JsonWebTokenService } from '@common/services/json-web-token/json-web-token.service';
 import { UsersService } from '@users/users.service';
@@ -56,7 +56,7 @@ export class AuthService {
 
   public async validateUser(email: string, pass: string): Promise<UserEntity> {
     const user = await this.usersService.findByEmail(email);
-    const passMatch = await bcrypt.compare(pass, user.password);
+    const passMatch = await compare(pass, user.password);
 
     if (!user || !passMatch) {
       throw new UnauthorizedException(

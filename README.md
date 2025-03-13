@@ -25,16 +25,18 @@
         - Install all global npm packages (see above).
         - Install Docker: https://docs.docker.com/engine/install/ubuntu/
         - `sudo apt-get update`
-        <!-- Use next step instead
         - Copy project to Ubuntu:
             `cp -R /mnt/c/Users/Andrii_Veldymanov/Documents/projects/my_projects/ng-nest-postgre-workspace/apps/api/luv-coffee-be ~/luv-coffee-be`
         - `cd ~/luv-coffee-be`
         - `code .`
-        -->
+
+<!-- TODO: Does not do changes when save file. Check later!
 - Run project in WSL. In VS Code:
     1. Open project.
     2. Open WLS terminal.
     3. Run: `code .`
+-->
+
 <!-- TODO: update after GCP setup
 - Install Cloud SDK (https://cloud.google.com/sdk/docs/install)
 - If you are not on Windows x64:

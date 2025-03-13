@@ -6,6 +6,7 @@ import { EmailJwtKey } from '@common/enums/jwt.enums';
 import { UserEntity } from '@users/entities/user.entity';
 import { JwtPayload } from '@lib/fe-shared';
 import { EmailService } from '@email/email.service';
+import { SentMessageInfo } from 'nodemailer';
 
 @Injectable()
 export class UserEmailService {
@@ -15,7 +16,7 @@ export class UserEmailService {
     private readonly jwtService: JsonWebTokenService,
   ) {}
 
-  public sendVerificationLink(user: UserEntity): Promise<any> {
+  public sendVerificationLink(user: UserEntity): Promise<SentMessageInfo> {
     const payload: JwtPayload = {
       id: user.id,
       email: user.email,

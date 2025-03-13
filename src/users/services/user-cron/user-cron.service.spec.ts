@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
 import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
 
 import { UserCronService } from './user-cron.service';
@@ -20,7 +19,6 @@ describe('UserCronService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UserCronService,
-        { provide: Connection, useValue: {} },
         {
           provide: getRepositoryToken(UserEntity),
           useValue: createMockRepository(),

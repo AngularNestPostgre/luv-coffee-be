@@ -64,7 +64,7 @@ export class CoffeesService {
       createCoffeeDto.flavors.map((name) => this.preloadFlavorByName(name)),
     );
 
-    const coffee = await this.coffeeRepository.create({
+    const coffee = this.coffeeRepository.create({
       ...createCoffeeDto,
       flavors,
     });

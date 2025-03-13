@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { ConfigService } from '@nestjs/config';
-import { createTransport } from 'nodemailer';
+import { createTransport, SentMessageInfo } from 'nodemailer';
 import * as Mail from 'nodemailer/lib/mailer';
 import { CronJob } from 'cron';
 
@@ -25,7 +25,7 @@ export class EmailService {
     });
   }
 
-  public async sendMail(options: Mail.Options): Promise<any> {
+  public async sendMail(options: Mail.Options): Promise<SentMessageInfo> {
     return await this.nodemailerTransport.sendMail(options);
   }
 

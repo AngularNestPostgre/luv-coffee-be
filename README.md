@@ -109,6 +109,14 @@ https://github.com/settings/tokens
   (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
     - On `dev` branch create release (set as pre-release).
 
+# Lint
+## Setup linter
+1. Install linter:
+  `npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`
+2. Init linter:
+  `npm init @eslint/config@latest`
+
+
 # Unit tests
 - Run `npm run test` to run all unit tests.
 - Run `npm run test:watch -- coffees.service` to watch only one file.

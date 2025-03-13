@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
 import { NotFoundException } from '@nestjs/common';
 import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
 
@@ -21,7 +20,6 @@ describe('UsersService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UsersService,
-        { provide: Connection, useValue: {} },
         {
           provide: getRepositoryToken(UserEntity),
           useValue: createMockRepository(),
@@ -67,8 +65,10 @@ describe('UsersService', () => {
         try {
           await service.findById(userId);
         } catch (err) {
-          expect(err).toBeInstanceOf(NotFoundException);
-          expect(err.message).toEqual(`User #${userId} not found`);
+          if (err instanceof Error) {
+            expect(err).toBeInstanceOf(NotFoundException);
+            expect(err.message).toEqual(`User #${userId} not found`);
+          }
         }
       });
     });

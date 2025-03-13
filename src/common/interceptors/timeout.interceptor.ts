@@ -15,11 +15,14 @@ import {
 
 @Injectable()
 export class TimeoutInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler,
+  ): Observable<TimeoutError | Error> {
     console.log('TimeoutInterceptor');
     return next.handle().pipe(
       timeout(3000),
-      catchError((err) => {
+      catchError((err: Error) => {
         if (err instanceof TimeoutError) {
           return throwError(() => new RequestTimeoutException());
         }

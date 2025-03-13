@@ -5,7 +5,7 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class WrapResponseInterceptor implements NestInterceptor {
@@ -13,12 +13,9 @@ export class WrapResponseInterceptor implements NestInterceptor {
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<ApiResp<unknown>> {
-    console.log('WrapResponseInterceptor 15');
+    console.log('WrapResponseInterceptor');
 
     return next.handle().pipe(
-      tap((data) => {
-        console.log('data: ', data);
-      }),
       map((data: unknown) => ({
         code: 200,
         data,

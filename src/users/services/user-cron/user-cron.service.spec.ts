@@ -30,7 +30,9 @@ describe('UserCronService', () => {
           const mockMetadata = moduleMocker.getMetadata(
             token,
           ) as MockFunctionMetadata<any, any>;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const Mock = moduleMocker.generateFromMetadata(mockMetadata);
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
           return new Mock();
         }
       })

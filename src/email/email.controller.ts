@@ -7,7 +7,7 @@ export class EmailController {
   constructor(private readonly emailSrvice: EmailService) {}
 
   @Post('schedule')
-  async scheduleEmail(@Body() emailSchedule: EmailScheduleDto) {
+  scheduleEmail(@Body() emailSchedule: EmailScheduleDto): void {
     this.emailSrvice.scheduleEmail(emailSchedule);
   }
 }

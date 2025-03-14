@@ -5,6 +5,7 @@ import * as request from 'supertest';
 
 import { CoffeesModule } from '../../src/modules/coffees/coffees.module';
 import { CreateCoffeeDto } from '../../src/modules/coffees/dto/create-coffee.dto';
+import { Server } from 'net';
 
 describe('[Feature] Coffees - /coffees', () => {
   const coffee = {
@@ -13,7 +14,7 @@ describe('[Feature] Coffees - /coffees', () => {
     flavors: ['chocolate', 'vanilla'],
   };
 
-  let app: INestApplication;
+  let app: INestApplication<Server>;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

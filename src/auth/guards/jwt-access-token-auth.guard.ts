@@ -29,11 +29,12 @@ export class JwtAccessTokenAuthGuard extends AuthGuard('jwt-access-token') {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handleRequest(err, user, info) {
+  handleRequest(err: Error | null, user, info) {
     // You can throw an exception based on either "info" or "err" arguments
     if (err || !user) {
       throw err || new UnauthorizedException();
     }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return user;
   }
 }

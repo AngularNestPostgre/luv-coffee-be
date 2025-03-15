@@ -141,6 +141,9 @@ According to GitHub WorkFlows.
 4. Make PR and merge `release_x.y.z` to `main`.
 5. Make PR and merge `main` to `dev`.
 6. In GitHub on `main` branch create release (to trigger packages publishing).
+7. Clean packages:
+    - ngx-shared: leave +2 recent versions (https://github.com/NgNestPostgres/luv-coffee-fe/pkgs/npm/ngx-shared)
+    - luv-coffee-be: delete (https://github.com/NgNestPostgres/luv-coffee-be/pkgs/container/luv-coffee-be)
 
 # TypeOrm
 ## DB Migrations

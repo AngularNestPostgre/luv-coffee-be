@@ -111,11 +111,11 @@ jobs:
           # output: 'trivy-results.sarif'
 
       # Requires Advanced Security which is avalabale only for public and GitHub Enterprise
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: 'trivy-results.sarif'
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   if: always()
+      #   with:
+      #     sarif_file: 'trivy-results.sarif'
 
   build-prod-image:
     name: Build Prod Image

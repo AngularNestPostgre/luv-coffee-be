@@ -1,4 +1,4 @@
-FROM node:22-alpine3.19 AS base
+FROM node:22-alpine3.21 AS base
 WORKDIR /usr/src/app
 # EXPOSE 3000
 

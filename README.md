@@ -137,7 +137,7 @@ According to GitHub WorkFlows.
     - package.json (version x.y.z as release branch)
     - libs/fe-shared/package.json (version x.y.z as release branch)
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
-3. Update package-lock.json: `npm i`
+3. Update package-lock.json: `npm update`
 4. Make PR and merge `release_x.y.z` to `main`.
 5. Make PR and merge `main` to `dev`.
 6. In GitHub on `main` branch create release (to trigger packages publishing).

@@ -66,8 +66,10 @@ describe('CoffeesService', () => {
         try {
           await service.findOne(coffeeId);
         } catch (err) {
-          expect(err).toBeInstanceOf(NotFoundException);
-          expect(err.message).toEqual(`Coffee #${coffeeId} not found`);
+          if (err instanceof Error) {
+            expect(err).toBeInstanceOf(NotFoundException);
+            expect(err.message).toEqual(`Coffee #${coffeeId} not found`);
+          }
         }
       });
     });

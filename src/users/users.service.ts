@@ -62,7 +62,7 @@ export class UsersService {
   public async create(createUserDto: CreateUserDto): Promise<UserEntity> {
     const salt = await genSalt(10);
     const hashedPassword = await hash(createUserDto.password, salt);
-    const user = await this.userRepository.create({
+    const user = this.userRepository.create({
       ...createUserDto,
       password: hashedPassword,
     });

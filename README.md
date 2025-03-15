@@ -109,6 +109,14 @@ https://github.com/settings/tokens
   (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
     - On `dev` branch create release (set as pre-release).
 
+# Lint
+## Setup linter
+1. Install linter:
+  `npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`
+2. Init linter:
+  `npm init @eslint/config@latest`
+
+
 # Unit tests
 - Run `npm run test` to run all unit tests.
 - Run `npm run test:watch -- coffees.service` to watch only one file.
@@ -129,10 +137,14 @@ According to GitHub WorkFlows.
     - package.json (version x.y.z as release branch)
     - libs/fe-shared/package.json (version x.y.z as release branch)
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z).
-3. Update package-lock.json: `npm i`
+3. Update package-lock.json: `npm update`
 4. Make PR and merge `release_x.y.z` to `main`.
 5. Make PR and merge `main` to `dev`.
 6. In GitHub on `main` branch create release (to trigger packages publishing).
+7. Clean packages:
+    - ngx-shared: leave +2 recent versions (https://github.com/NgNestPostgres/luv-coffee-fe/pkgs/npm/ngx-shared)
+    - luv-coffee-be: delete (https://github.com/NgNestPostgres/luv-coffee-be/pkgs/container/luv-coffee-be)
+8. Clean Docker Hub (https://hub.docker.com/repository/docker/angularnestpostgre/luv-coffee-be/tags)
 
 # TypeOrm
 ## DB Migrations

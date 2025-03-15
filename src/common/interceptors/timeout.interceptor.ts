@@ -17,9 +17,10 @@ import {
 export class TimeoutInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     console.log('TimeoutInterceptor');
+
     return next.handle().pipe(
-      timeout(3000),
-      catchError((err) => {
+      timeout(5000),
+      catchError((err: Error) => {
         if (err instanceof TimeoutError) {
           return throwError(() => new RequestTimeoutException());
         }

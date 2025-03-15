@@ -9,7 +9,7 @@ export class JsonWebTokenService {
 
   public async decodeJwt(token: string, secret: string): Promise<JwtPayload> {
     try {
-      const payload = await this.jwtService.verify(token, {
+      const payload = await this.jwtService.verifyAsync<JwtPayload>(token, {
         secret,
       });
 
@@ -18,8 +18,8 @@ export class JsonWebTokenService {
       }
 
       throw new BadRequestException();
-    } catch (error) {
-      if (error?.name === 'TokenExpiredError') {
+    } catch (err) {
+      if (err instanceof Error && err?.name === 'TokenExpiredError') {
         throw new BadRequestException('Token expired');
       }
 

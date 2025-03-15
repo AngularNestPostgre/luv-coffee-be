@@ -20,14 +20,14 @@ export class TypeormExceptionFilter<T extends TypeORMError>
 
     Logger.error(
       exception.message,
-      (exception as any).stack,
+      (exception as TypeORMError).stack,
       `${request.method} ${request.url}`,
     );
 
     response.status(status).json({
       statusCode: status,
       message: exception.message,
-      code: (exception as any).code,
+      // code: (exception as any).code,
       path: request.url,
       method: request.method,
       timestamp: new Date().toISOString(),

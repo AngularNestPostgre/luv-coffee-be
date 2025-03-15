@@ -32,7 +32,9 @@ export class UserCronService {
       .andWhere(`user.createdAt < :jwtExpiration`, {
         jwtExpiration: DateTime.now()
           .plus({ hours: 23, minutes: 59, seconds: 59 })
-          .minus({ seconds: this.configService.get(EmailJwtKey.Expiration) }),
+          .minus({
+            seconds: this.configService.get(EmailJwtKey.Expiration),
+          }),
       })
       .getMany();
 

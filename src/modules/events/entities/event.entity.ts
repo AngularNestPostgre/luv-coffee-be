@@ -21,7 +21,7 @@ export class Event {
   name: string;
 
   @Column('json')
-  payload: Record<string, any>;
+  payload: Record<string, unknown>;
 
   @CreateDateColumn()
   createdAt: Date;

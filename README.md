@@ -144,6 +144,7 @@ According to GitHub WorkFlows.
 7. Clean packages:
     - ngx-shared: leave +2 recent versions (https://github.com/NgNestPostgres/luv-coffee-fe/pkgs/npm/ngx-shared)
     - luv-coffee-be: delete (https://github.com/NgNestPostgres/luv-coffee-be/pkgs/container/luv-coffee-be)
+8. Clean Docker Hub (https://hub.docker.com/repository/docker/angularnestpostgre/luv-coffee-be/tags)
 
 # TypeOrm
 ## DB Migrations

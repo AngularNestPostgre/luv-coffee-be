@@ -100,12 +100,13 @@ https://github.com/settings/tokens
     - package.json (version x.y.z+1)
     - libs/package.json (version x.y.z+1)
     - .github/workflows/ci.yaml (Docker meta -> type=raw,value=x.y.z+1)
-2. Publish from local machine:
+2. Update package-lock.json: `npm update`
+3. Publish from local machine:
     1. Authenticate to GitHub Registry (see [GitHub Registry Auth](#gitHub-registry-auth))
     2. Run `npm run publish:fe-shared`.
-3. Publish with GitHub Actions
+4. Publish with GitHub Actions
   (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-    - On `dev` branch create release (set as pre-release).
+    - On `current working` branch create release (set as pre-release).
 
 # Lint
 ## Setup linter

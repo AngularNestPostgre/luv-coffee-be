@@ -106,7 +106,14 @@ https://github.com/settings/tokens
     2. Run `npm run publish:fe-shared`.
 4. Publish with GitHub Actions
   (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-    - On `current working` branch create release (set as pre-release).
+    - On `current working` click `Releases`.
+    - Click `Draft a new release`.
+    - Choose a tag (v.x.y.z+1).
+    - Target branch: `current working branch`.
+    - Generate release notes (optional).
+    - Set as pre-release.
+    - Publish release
+
 
 # Lint
 ## Setup linter

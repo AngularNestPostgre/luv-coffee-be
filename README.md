@@ -106,7 +106,7 @@ https://github.com/settings/tokens
     2. Run `npm run publish:fe-shared`.
 4. Publish with GitHub Actions
   (https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token):
-    - On `current working` click `Releases`.
+    - Click `Releases`.
     - Click `Draft a new release`.
     - Choose a tag (v.x.y.z+1).
     - Target branch: `current working branch`.
@@ -114,14 +114,12 @@ https://github.com/settings/tokens
     - Set as pre-release.
     - Publish release
 
-
 # Lint
 ## Setup linter
 1. Install linter:
   `npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`
 2. Init linter:
   `npm init @eslint/config@latest`
-
 
 # Unit tests
 - Run `npm run test` to run all unit tests.
@@ -146,7 +144,14 @@ According to GitHub WorkFlows.
 3. Update package-lock.json: `npm update`
 4. Make PR and merge `release_x.y.z` to `main`.
 5. Make PR and merge `main` to `dev`.
-6. In GitHub on `main` branch create release (to trigger packages publishing).
+6. In GitHub create release (to trigger packages publishing):
+    - Click `Releases`.
+    - Click `Draft a new release`.
+    - Choose a tag (v.x.y.z).
+    - Target branch: `main`.
+    - Generate release notes.
+    - Set as the latest release.
+    - Publish release
 7. Clean packages:
     - ngx-shared: leave +2 recent versions (https://github.com/NgNestPostgres/luv-coffee-fe/pkgs/npm/ngx-shared)
     - luv-coffee-be: delete (https://github.com/NgNestPostgres/luv-coffee-be/pkgs/container/luv-coffee-be)

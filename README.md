@@ -147,6 +147,8 @@ According to GitHub WorkFlows.
 8. Clean Docker Hub (https://hub.docker.com/repository/docker/angularnestpostgre/luv-coffee-be/tags)
 
 # TypeOrm
+## idx
+psql -h localhost -d postgres
 ## DB Migrations
 Run `npm run serve:local` (to run DB)
 

@@ -9,7 +9,7 @@ import { SchemaSync1711700291982 } from 'src/db/migrations/1711700291982-SchemaS
 export default new DataSource({
   type: 'postgres',
   database: 'postgres',
-  username: 'postgres',
+  username: 'user',
   host: 'localhost',
   port: 5432,
   password: 'pass123',

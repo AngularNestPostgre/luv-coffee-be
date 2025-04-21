@@ -22,7 +22,7 @@ services:
 
   postgres:
     container_name: luv_coffee_be_postgres_dev
-    image: postgres:14
+    image: postgres:17
     restart: always
     networks:
       - webnet
@@ -30,7 +30,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
-      PG_DATA: /var/lib/postgresql/data
+      PG_DATA: /var/lib/postgresql@17/data
     ports:
       - ${DB_PORT}:${DB_PORT}
     volumes:

@@ -56,6 +56,10 @@
 
 # Development
 ## Development targeted to local DB
+0. First start:
+  - `npm run compose:local:update`
+  - While DB is rinning: `npm run typeorm:migrate:local`
+    - provide user access to dist folder: `sudo chown -R $USER /home/veldymanov/luv-coffee-be/dist`
 1. After each `npm install`:
     - run `npm run compose:local:update`,
     - and don't forget to remove old docker images and volumes:

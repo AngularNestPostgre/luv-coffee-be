@@ -1,4 +1,4 @@
-version: '3.9'
+# version: '3.9'
 
 services:
   app_e2e:
@@ -20,7 +20,7 @@ services:
       - postgres_e2e
   postgres_e2e:
     container_name: luv_coffee_be_postgres_e2e
-    image: postgres:14.1
+    image: postgres:17
     restart: always
     networks:
       - webnet
@@ -28,7 +28,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
-      PG_DATA: /var/lib/postgresql/datae2e
+      PG_DATA: /var/lib/postgresql@17/datae2e
     ports:
       - 5433:${DB_PORT}
     volumes:

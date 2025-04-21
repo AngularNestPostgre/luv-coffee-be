@@ -1,3 +1,4 @@
+export * from './enums/auth-method.enum';
 export * from './enums/user-role.enum';
 export * from './interfaces/api-resp.interfaces';
 export * from './interfaces/token.interfaces';

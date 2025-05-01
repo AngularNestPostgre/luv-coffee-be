@@ -1,7 +1,10 @@
 export enum UserRole {
-  Admin = 'admin',
-  Editor = 'editor',
-  Root = 'root',
-  User = 'user',
   NotActivated = 'notActivated',
+  UserActivatedPhone = 'userActivatedPhone',
+  UserActivatedEmail = 'userActivatedEmail',
+  User = 'user',
+  Editor = 'editor',
+  Admin = 'admin',
+  Root = 'root',
+  Deleted = 'deleted',
 }

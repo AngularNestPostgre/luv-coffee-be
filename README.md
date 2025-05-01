@@ -180,6 +180,7 @@ Run `npm run serve:local` (to run DB)
         `import { Flavor } from './src/modules/coffees/entities/flavor.entity';`
         which are going to be changed.
     - Run `npm run typeorm:generate-migration`. (Be sure that application must be built before `npx typeorm migration:generate src/db/migrations/SchemaSync -d dist/typeorm. config`).
+      - Provide user access to dist folder: `sudo chown -R $USER /home/veldymanov/luv-coffee-be/dist`
     - In `typeorm.config.ts` file in `migrations` array add migration class `SchemaSync1711700291982` from created `1711700291982-SchemaSync.ts` file.
     - Run `npm run typeorm:migrate:local`. (Be sure that application must be built before `npx typeorm migration:run -d dist/typeorm.config`)
 

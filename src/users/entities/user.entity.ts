@@ -30,7 +30,7 @@ export class UserEntity implements User {
   @Column({
     type: 'enum',
     enum: UserRole,
-    default: UserRole.User,
+    default: UserRole.NotActivated,
   })
   role: UserRole;
 

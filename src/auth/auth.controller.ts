@@ -5,6 +5,8 @@ import {
   Req,
   Body,
   HttpCode,
+  Get,
+  Query,
 } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
@@ -27,6 +29,30 @@ export class AuthController {
     private readonly usersService: UsersService,
     private readonly userEmailService: UserEmailService,
   ) {}
+
+  @Public()
+  @Get('auth-state')
+  async authState(@Query() query: { email: string }): Promise<UserRole | null> {
+    const user: UserEntity = await this.usersService.findByEmail(query.email);
+    let userRole: UserRole | null = null;
+
+    if (user) {
+      if (
+        [
+          UserRole.Root,
+          UserRole.Admin,
+          UserRole.Editor,
+          UserRole.User,
+        ].includes(user.role)
+      ) {
+        userRole = UserRole.User;
+      } else {
+        userRole = user.role;
+      }
+    }
+
+    return userRole;
+  }
 
   @Public()
   @UseGuards(LocalSignupAuthGuard)

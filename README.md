@@ -250,4 +250,14 @@ https://cloud.google.com/sql/docs/postgres/connect-overview
 - Run `gcloud sql instances describe luv-coffee-dev-1`
 
 
-# GCP Theory
+# User Role
+ 1. NotRegistered
+ 2. Registered (not activated phone, not activated email)
+ 3. UserActivatedPhone (activated phone, not activated email)
+ 4. UserActivatedEmail (activated email, not activated phone)
+ 5. User (activated phone, activated email)
+ 6. Moderator
+ 7. Admin
+ 8. Root
+ 9. Deleted (by admin)
+

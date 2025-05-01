@@ -251,13 +251,13 @@ https://cloud.google.com/sql/docs/postgres/connect-overview
 - Run `gcloud sql instances describe luv-coffee-dev-1`
 
 
-# User Role
- 1. NotActivated (registered, not activated phone, not activated email)
- 3. UserActivatedPhone (activated phone, not activated email)
- 4. UserActivatedEmail (activated email, not activated phone)
- 5. User (activated phone, activated email)
- 6. Editor
- 7. Admin
- 8. Root
- 9. Deleted (by admin)
-
+# User Roles Strategy
+  0. null (not registered, only for UI)
+  1. NotActivated (registered, not activated phone, not activated email)
+  3. UserActivatedPhone (activated phone, not activated email)
+  4. UserActivatedEmail (activated email, not activated phone)
+  5. User (activated phone, activated email)
+  6. Editor
+  7. Admin
+  8. Root
+  9. Deleted (by admin)

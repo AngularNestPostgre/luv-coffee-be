@@ -6,5 +6,4 @@ export enum UserRole {
   Editor = 'editor',
   Admin = 'admin',
   Root = 'root',
-  Deleted = 'deleted',
 }

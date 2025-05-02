@@ -7,12 +7,19 @@ import {
   MaxLength,
   Matches,
   IsNotEmpty,
+  IsPhoneNumber,
+  ValidateIf,
 } from 'class-validator';
 import { CreateUser, UserRole } from '@lib/fe-shared';
 
 export class CreateUserDto implements CreateUser {
+  @ValidateIf((o: CreateUser) => o.phone === undefined || !!o.email)
   @IsEmail()
   readonly email: string;
+
+  @ValidateIf((o: CreateUser) => o.email === undefined || !!o.phone)
+  @IsPhoneNumber()
+  readonly phone: string;
 
   @IsString()
   @MinLength(6, { message: 'The min length of password is 6' })

@@ -6,7 +6,7 @@ import { DataSource } from 'typeorm/data-source/DataSource';
 
 import { SchemaSync1643620954485 } from 'src/db/migrations/1643620954485-SchemaSync';
 import { SchemaSync1711700291982 } from 'src/db/migrations/1711700291982-SchemaSync';
-import { SchemaSync1746103986895 } from 'src/db/migrations/1746103986895-SchemaSync';
+import { SchemaSync1746189948119 } from 'src/db/migrations/1746189948119-SchemaSync';
 
 export default new DataSource({
   type: 'postgres',
@@ -19,6 +19,6 @@ export default new DataSource({
   migrations: [
     SchemaSync1643620954485,
     SchemaSync1711700291982,
-    SchemaSync1746103986895,
+    SchemaSync1746189948119,
   ], // Insert right migrations for migration run
 });

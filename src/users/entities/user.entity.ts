@@ -14,8 +14,11 @@ export class UserEntity implements User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   email: string;
+
+  @Column({ unique: true, nullable: true })
+  phone: string;
 
   @Exclude()
   @Column()
@@ -30,7 +33,7 @@ export class UserEntity implements User {
   @Column({
     type: 'enum',
     enum: UserRole,
-    default: UserRole.User,
+    default: UserRole.NotActivated,
   })
   role: UserRole;
 

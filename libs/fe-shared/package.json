@@ -1,7 +1,7 @@
 {
   "name": "@ngnestpostgres/fe-shared",
   "author": "Andriy<veldymanov@gmail.com>",
-  "version": "0.0.37",
+  "version": "0.1.3",
   "license": "MIT",
   "repository": {
     "type": "git",
